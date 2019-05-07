@@ -33,7 +33,7 @@
   .header{
       color: white;
       text-align: center;
-      line-height: 2.70rem;
+      line-height: 2.4rem;
   }
   .header-login{
       font-size: 16px;
