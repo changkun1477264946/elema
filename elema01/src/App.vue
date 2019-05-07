@@ -1,17 +1,14 @@
 <template>
   <div id="app">
-    <zhead></zhead>
     <router-view/>
   </div>
 </template>
 
 <script>
-  import zhead from './components/header/head'
+
 export default {
   name: 'App',
-  components:{
-    zhead
-  }
+
 }
 </script>
 
