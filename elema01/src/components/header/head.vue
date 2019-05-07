@@ -36,6 +36,6 @@
       line-height: 2.4rem;
   }
   .header-login{
-      font-size: 16px;
+      font-size: 0.7rem;
   }
 </style>
