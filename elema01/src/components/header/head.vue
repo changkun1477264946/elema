@@ -1,8 +1,16 @@
 <template>
     <div class="header-top">
-        <slot name="logo"></slot>
-        <slot name="title"></slot>
-        <slot name="login"></slot>
+        <div class="row">
+            <div class="header col-xs-3">
+                <slot name="logo"></slot>
+            </div>
+            <div class="header col-xs-5">
+                <slot name="title"></slot>
+            </div>
+            <div class="header col-xs-4 header-login">
+                <slot name="login"></slot>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -21,7 +29,13 @@
       top:0;
       left: 0;
       z-index: 100;
-
   }
-
+  .header{
+      color: white;
+      text-align: center;
+      line-height: 2.70rem;
+  }
+  .header-login{
+      font-size: 16px;
+  }
 </style>
