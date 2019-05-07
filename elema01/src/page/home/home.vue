@@ -1,10 +1,16 @@
 <template>
-    <div></div>
+    <zhead>
+      <span slot="logo">ele.me</span>
+    </zhead>
 </template>
 
 <script>
+  import zhead from '../../components/header/head'
     export default {
-        name: "home"
+        name: "home",
+      components:{
+          zhead
+      }
     }
 </script>
 
