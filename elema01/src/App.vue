@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-     <h1>hello</h1>
+     <h1 class="btn btn-danger">hello</h1>
     <router-view/>
   </div>
 </template>
@@ -12,6 +12,7 @@ export default {
 </script>
 
 <style>
+  @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
   html,body{
     width: 100%;
     height: 100%;
