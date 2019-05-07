@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-     <h1 class="btn btn-danger">hello</h1>
+    <zhead></zhead>
     <router-view/>
   </div>
 </template>
 
 <script>
+  import zhead from './components/header/head'
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    zhead
+  }
 }
 </script>
 
@@ -16,6 +20,7 @@ export default {
   html,body{
     width: 100%;
     height: 100%;
+    font-size: 20px;
   }
   #app{
     width: 100%;
