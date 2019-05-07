@@ -6,7 +6,7 @@ import router from './router';
 import './assets/resize';
 
 import iView from 'iview';
-import 'iview/dist/styles/iview.css';
+import '../node_modules/iview/dist/styles/iview.css';
 Vue.use(iView);
 
 Vue.config.productionTip = false;
