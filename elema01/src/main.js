@@ -4,7 +4,16 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import './assets/resize';
+
 Vue.config.productionTip = false;
+
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, axios);
+
+import vueSwiper from 'vue-awesome-swiper'
+import '../node_modules/swiper/dist/css/swiper.min.css';
+Vue.use(vueSwiper);
 
 /* eslint-disable no-new */
 new Vue({
