@@ -7,7 +7,7 @@
         <div >
             <div class="">
                 <span class="pull-left">当前定位城市</span>
-                <span class="pull-right">定位不准时,请在城市列表中选择</span>
+                <span class="pull-right">{{guessCityChange}}</span>
                 <span class="clearfix"></span>
             </div>
             <a href="#" class="">
@@ -17,27 +17,23 @@
         </div>
         <div>
             <Row class="table">
-                <Col span="6" v-for="city in hotCity" class="text-center city table-bordered">
-
+                <Col span="6" v-for="(city,i) in hotCity" class="text-center city table-bordered" :key="i">
                     <router-link :to="{path:'/city'}">{{city.name}}</router-link>
                 </Col>
             </Row>
             <div v-for="(citys,ss) in sortByKey">
                 {{ss}}
-                <!--<div v-for="city in citys">-->
-                    <!--{{city.name}}-->
-                <!--</div>-->
                 <Row class="table table2">
-                    <Col span="6" v-for="city in citys" class="text-center city table-bordered">
+                    <Col span="6" v-for="(city,i) in citys" class="text-center city table-bordered" :key="i">
                         <router-link :to="{path:'/city'}">{{city.name}}</router-link>
                     </Col>
                 </Row>
             </div>
+
         </div>
     </div>
 
 </template>
-
 <script>
     import Vue from 'vue';
     import Zhead from "../../components/header/head";
@@ -48,7 +44,9 @@
             return {
                 allCity:{},
                 newAllCity:{},
-                hotCity:{}
+                hotCity:{},
+                guessCity:'定位不准时,请在城市列表中选择',
+                cityInfor:{},
             }
         },
         computed:{
@@ -61,26 +59,28 @@
                 }
                 console.log(this.newAllCity);
                 return this.newAllCity;
+            },
+            guessCityChange(){
+                if(this.$store.state.localCity){
+                    this.guessCity = this.$store.state.localCity
+                }
+                return this.guessCity;
             }
         },
         mounted(){
             //  当组件挂载完毕时发起网络请求
             Vue.axios.get('https://elm.cangdu.org/v1/cities?type=group').then((res)=>{
-                console.log(res.data);
+                // console.log(res.data);
                 this.allCity=res.data;
-
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });
-
             Vue.axios.get('https://elm.cangdu.org/v1/cities?type=hot').then((res)=>{
-                console.log(res.data);
+                // console.log(res.data);
                 this.hotCity=res.data;
-
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });
-
         },
     }
 </script>
