@@ -9,8 +9,11 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 const store = new Vuex.Store({
     state:{
-        latitude: '123', // 当前位置纬度
+        guessCity:{},  //当前城市信息 name id
+        localCity:'', // 当前城市名字
+        latitude: '', // 当前位置纬度
         longitude: '', // 当前位置经度
+
         cartList: {}, // 加入购物车的商品列表
         shopDetail: null, //商家详情信息
         userInfo: null, //用户信息
@@ -36,9 +39,16 @@ const store = new Vuex.Store({
         question: null,//问题详情
         cartPrice: null, //会员卡价格
     },
-    // getters:{
-    //
-    // },
+    getters:{
+        saleProducts:(state)=>{
+            return state.products.map(p=>{
+                return {
+                    name:p.name,
+                    price:p.price/2
+                }
+            })
+        }
+    },
     // mutations:{
     //
     // },
