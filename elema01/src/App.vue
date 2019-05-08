@@ -63,6 +63,6 @@
     #app{
         width: 100%;
         height: 100%;
-        padding-top: 2.3rem;
+
     }
 </style>

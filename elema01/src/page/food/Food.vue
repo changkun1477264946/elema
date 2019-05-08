@@ -131,6 +131,7 @@
 <style scoped>
     .qq{
         width: 100%;
+        padding-top: 2.3rem;
     }
     .bird{
         margin-left: 1.6rem;

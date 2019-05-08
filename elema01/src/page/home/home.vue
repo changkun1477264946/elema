@@ -97,6 +97,7 @@
         border-top: 2px solid #e4e4e4;
         border-bottom: 1px solid #e4e4e4;
         font: .55rem/1.45rem Helvetica Neue;
+        padding-top: 2.3rem;
     }
     .pull-right{
         padding-right: .45rem;
