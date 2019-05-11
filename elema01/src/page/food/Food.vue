@@ -1,12 +1,12 @@
 <template>
-    <div class="qq">
+    <div class="food_header">
         <zhead>
             <div slot="logo" >
                 <span class="glyphicon glyphicon-search
                 "></span>
             </div>
             <div slot="title">郑州站</div>
-            <div slot="login">登录 | 注册</div>
+           <div slot="login" class="login"><router-link :to="{path:'/login'}">登录 | 注册</router-link></div>
         </zhead>
         <div>
             <swiper :options="swiperOption" class="swiperC">
@@ -14,16 +14,20 @@
                 <swiper-slide>
                     <Row class="text-center">
                         <Col span="6"  v-for="(food,i) in foods1" :key="i" class="food">
-                            <div><img v-bind:src="'//fuss10.elemecdn.com/'+food.image_url"></div>
-                            <div class="title">{{food.title}}</div>
+                            <router-link :to="{path:'/zfood',query:{title:food.title}}">
+                                <div><img v-bind:src="'//fuss10.elemecdn.com/'+food.image_url"></div>
+                                <div class="title">{{food.title}}</div>
+                            </router-link>
                         </Col>
                     </Row>
                 </swiper-slide>
                 <swiper-slide>
                     <Row class="text-center">
                         <Col span="6"  v-for="(food,i) in foods2" :key="i" class="food">
-                            <div><img v-bind:src="'//fuss10.elemecdn.com/'+food.image_url"></div>
-                            <div class="title">{{food.title}}</div>
+                            <router-link :to="{path:'/zfood',query:{title:food.title}}">
+                                <div><img v-bind:src="'//fuss10.elemecdn.com/'+food.image_url"></div>
+                                <div class="title">{{food.title}}</div>
+                            </router-link>
                         </Col>
                     </Row>
                 </swiper-slide>
@@ -103,7 +107,7 @@
         },
         mounted(){
             Vue.axios.get('https://elm.cangdu.org/v2/index_entry').then((res)=>{
-                // console.log(res.data);
+                 console.log(res.data,"jjjjjj");
                 this.foods=res.data;
                 this.foods1=res.data.slice(0, this.foods.length/2);
                 this.foods2=res.data.slice(this.foods.length/2);
@@ -127,10 +131,16 @@
         }
     }
 </script>
-
 <style scoped>
-    .qq{
-        width: 100%;
+    a{
+        color: #666;
+        text-decoration: none;
+    }
+    .login a{
+        color: white;
+    }
+    .food_header{
+        padding-top: 2.3rem;
     }
     .bird{
         margin-left: 1.6rem;

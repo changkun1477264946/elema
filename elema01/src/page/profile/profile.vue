@@ -3,7 +3,7 @@
         <zhead>
             <div slot="logo">
                 <router-link :to="{}">
-                    <Icon type="ios-arrow-back"  color="white" size="35"/>
+                    <Icon type="ios-arrow-back"  color="white" size="35"  @click="$router.go(-1)"/>
                 </router-link>
             </div>
             <div slot="title" class="proflie_my">我的</div>
@@ -100,6 +100,14 @@
     import footGuide from "../../components/footer/footGuide"
     export default {
         name: "profile",
+        data(){
+            return{
+
+            }
+        },
+        methods:{
+
+        },
         components:{
             zhead,footGuide
         }
@@ -114,7 +122,7 @@
         width: 100%;
         height: 100%;
         background: #f5f5f5;
-
+        overflow-y: hidden;
     }
     .proflie_my{
         font-weight: 600;
@@ -122,28 +130,32 @@
     }
     .profile_infor{
         width: 100%;
-        height: 4rem;
+        height: 4.3rem;
         background: #3190e8;
+        /*background: red;*/
         margin-top: 2.2rem;
         padding-top: 0.75rem;
     }
     .profile_img{
         float: left;
+        width: 3rem;
+        height: 3rem;
+        margin-left: 0.75rem;
+        border-radius: 50%;
     }
     .profile_img .img{
         width: 3rem;
         height: 3rem;
-        border-radius: 50%;
-        margin-left: 0.5rem;
     }
     .profile_details{
         float: left;
-        margin-left: 0.5rem;
+        margin-left: 0.8rem;
     }
     .profile_details .details_infor{
         color: white;
         font-weight: 600;
         margin: 0;
+        padding-top: 0.35rem;
     }
     .profile_details .details_tel{
        font-size: 0.6rem;
@@ -193,7 +205,6 @@
     .profile_1reTe{
         margin-top: 0.5rem;
         width: 100%;
-        /*height: 30%;*/
         background: white;
     }
     .order{

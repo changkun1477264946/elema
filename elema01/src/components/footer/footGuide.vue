@@ -1,8 +1,8 @@
 <template>
     <div class="footer">
         <div class="footer-icon">
-            <section @click="changebgc(arr[0])">
-                <router-link :to="{}" >
+            <section  @click="changebgc(arr[0])">
+                <router-link :to="{path:'/food'}">
                     <Icon type="ios-basket" size="25" :class="{icon:change === 1? true : false}" />
                     <p>外卖</p>
                 </router-link>
@@ -20,7 +20,7 @@
                 </router-link>
             </section>
             <section @click="changebgc(arr[3])">
-                <router-link :to="{}" >
+                <router-link :to="{path:'/profile'}" >
                     <Icon type="ios-contact" size="25" :class="{icon:change === 4? true :false}"/>
                     <p>我的</p>
                 </router-link>
