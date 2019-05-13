@@ -7,6 +7,7 @@ import './assets/resize';
 
 import Vuex from "vuex";
 Vue.use(Vuex);
+axios.defaults.withCredentials = true
 const store = new Vuex.Store({
     state:{
         guessCity:{},  //当前城市信息 name id

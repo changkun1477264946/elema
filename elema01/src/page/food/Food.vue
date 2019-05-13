@@ -6,7 +6,7 @@
                 "></span>
             </div>
             <div slot="title">郑州站</div>
-            <div slot="login">登录 | 注册</div>
+            <div slot="login"><router-link :to="{path:'/login'}">登录 | 注册</router-link></div>
         </zhead>
         <div>
             <swiper :options="swiperOption" class="swiperC">
@@ -36,7 +36,7 @@
                 <Icon type="md-filing"/>
                 附近商家
             </h2>
-            <Row class="store" v-for="(stores,i) in goodList" :key="">
+            <Row class="store" v-for="(stores,i) in goodList" :key="i">
                 <Col span="5">
                     <img :src="'//elm.cangdu.org/img/'+stores.image_path" alt="">
                 </Col>
@@ -47,19 +47,22 @@
                         <span class="pull-right">保准票</span>
                     </div>
                     <div class="fs1 text-right">
-                        <div class="sc">
-                            <Rate disabled  show-text allow-half v-model="valueCustomText" class="v">
-                                <span style="color: #f5a623">{{ valueCustomText }}</span>
-                            </Rate>
+                        <div class="pull-left">
+                            <span  class="sc">
+                                <Rate disabled  show-text allow-half v-model="valueCustomText" class="v">
+                                     <span style="color: #f5a623">{{ valueCustomText }}</span>
+                                </Rate>
+                            </span>
+                            <span class="fs11">月售{{stores.recent_order_num}}单</span>
                         </div>
-                        <span>月售{{stores.recent_order_num}}单</span>
                         <span class="bird pull-right">
                             蜂鸟专送
                         </span>
+                        <div class="clearfix"></div>
                     </div>
                     <p>
-                        <span>¥{{stores.float_minimum_order_amount}}起送 / 配送费约¥{{stores.float_delivery_fee}}</span>
-                        <span class="pull-right">{{stores.distance}}{{stores.order_lead_time}}</span>
+                        <span class="fs1 pull-left">¥{{stores.float_minimum_order_amount}}起送 / 配送费约¥{{stores.float_delivery_fee}}</span>
+                        <span class="pull-right fs1">{{stores.distance}}{{stores.order_lead_time}}</span>
                     </p>
                 </Col>
             </Row>
@@ -129,6 +132,9 @@
 </script>
 
 <style scoped>
+    .login a{
+        color: white;
+    }
     .qq{
         width: 100%;
         padding-top: 2.3rem;
@@ -138,6 +144,10 @@
     }
     .pull-right{
         padding-right: 0.5rem;
+    }
+    .fs11{
+        position: absolute;
+        left: 40%;
     }
     .fs2{
         display: inline-block;
@@ -162,12 +172,14 @@
     }
     .v{
         vertical-align: 0;
+
     }
     .sc{
+        transform: scale(0.5);
         position: absolute;
-        top: -0.2rem;
-        left: -1.36rem;
-        transform: scale(0.6);
+        top: -0rem;
+        left: -1.5rem;
+
     }
     .store{
         border-bottom: 0.05px solid #f1f1f1;

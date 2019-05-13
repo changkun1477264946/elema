@@ -1,7 +1,5 @@
 <template>
     <div id="app">
-        <!--<home></home>-->
-        <Food></Food>
         <router-view/>
     </div>
 </template>
@@ -10,11 +8,14 @@
     import Vue from 'vue';
     import home from "./page/home/home";
     import Food from "./page/food/Food";
+    import Ctype from "./page/Ctype/Ctype";
+    import FootGuide from "./components/footer/footGuide";
+    import Evaluate from "./page/Cshop/Evaluate";
+    import Score from "./components/common/score";
+    import FoodSafe from "./components/common/foodSafe";
+    import Search from "./page/search/search";
     export default {
         name: 'App',
-        components:{
-            Food,home
-        },
         methods:{
             // 获取当前城市的信息
             getCityInfor(id){
@@ -24,7 +25,7 @@
                     this.$store.state.latitude = this.cityInfor.latitude;
                     this.$store.state.longitude = this.cityInfor.longitude;
                     this.$store.state.localCity = this.cityInfor.name;
-                    // console.log(this.$store.state.latitude,this.$store.state.longitude,this.$store.state.localCity)
+                    // console.log(this.$store.state.latitude,this.$store.state.longitude,this.$store.state.localCity)"https://elm.cangdu.org/shopping/restaurants?latitude="+this.$store.state.latitude+"&longitude="+this.$store.state.longitude
                 }).catch((error)=>{
                     console.log('请求错误:1' ,error);
                 });
@@ -33,7 +34,6 @@
         mounted(){
             // 获取当前城市
             Vue.axios.get('https://elm.cangdu.org/v1/cities?type=guess').then((res)=>{
-                // console.log(res.data,'222');
                 this.$store.state.guessCity = res.data;
                 this.getCityInfor(res.data.id)
             }).catch((error)=>{
@@ -57,12 +57,12 @@
         width: 100%;
         height: 100%;
         font-size: 20px;
-        /*overflow-x: hidden;*/
-        /*overflow-y: scroll;*/
+        background-color: #f5f5f5;
     }
     #app{
         width: 100%;
         height: 100%;
-
     }
 </style>
+
+
