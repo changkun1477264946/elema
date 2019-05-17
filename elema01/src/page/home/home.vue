@@ -1,8 +1,11 @@
 <template>
     <div class="city_title">
         <zhead>
-            <div slot="logo">ele.me</div>
-            <div slot="login" class="login">登录 | 注册</div>
+            <div slot="logo" class="logo">ele.me</div>
+            <div slot="login" class="login" v-if="!userInfoLogin" @click="goProfile">登录 | 注册</div>
+            <div slot="login" class="login1" v-if="userInfoLogin" @click="goProfile">
+                <Icon type="ios-person-outline" />
+            </div>
         </zhead>
         <div >
             <div class="">
@@ -10,22 +13,22 @@
                 <span class="pull-right">{{guessCityChange}}</span>
                 <span class="clearfix"></span>
             </div>
-            <a href="#" class="">
+            <router-link :to="{path:'/city'}">
                 <div class="pull-right"><Icon type="ios-arrow-forward" size="24" /></div>
                 <span class="clearfix"></span>
-            </a>
+            </router-link>
         </div>
         <div>
             <Row class="table">
                 <Col span="6" v-for="(city,i) in hotCity" class="text-center city table-bordered" :key="i">
-                    <router-link :to="{path:'/city'}">{{city.name}}</router-link>
+                    <span @click="changeCity(city.id)" class="hotCitys">{{city.name}}</span>
                 </Col>
             </Row>
             <div v-for="(citys,ss) in sortByKey">
                 {{ss}}
                 <Row class="table table2">
                     <Col span="6" v-for="(city,i) in citys" class="text-center city table-bordered" :key="i">
-                        <router-link :to="{path:'/city'}">{{city.name}}</router-link>
+                        <span @click="changeCity(city.id)">{{city.name}}</span>
                     </Col>
                 </Row>
             </div>
@@ -50,6 +53,9 @@
             }
         },
         computed:{
+            userInfoLogin(){
+                return this.$store.state.userInfo;
+            },
             sortByKey() {
                 const newkey = Object.keys(this.allCity).sort();
                 console.log(newkey,'11');
@@ -82,12 +88,37 @@
                 console.log('请求错误:' ,error);
             });
         },
+        methods:{
+            goProfile(){
+                this.$router.push({path:"/profile"});
+            },
+            changeCity(id){
+                Vue.axios.get('https://elm.cangdu.org/v1/cities/'+id).then((res)=>{
+                    console.log(res.data,'1589');
+                    this.$store.commit('changeCityInfo',res.data);
+                    this.cityInfor = res.data;
+                    this.$router.push({path:"/goChooseCityPage"})
+                }).catch((error)=>{
+                    console.log('请求错误:1' ,error);
+                });
+            },
+        }
     }
 </script>
 
 <style scoped>
-    .login{
-        font-size: 0.6rem;
+    .logo{
+        text-align: left;
+        font-size: 0.8rem;
+    }
+    .login1{
+        font-size: 1.3rem;
+        line-height: 2rem;
+        text-align: right;
+        padding-right: 0.5rem ;
+    }
+    .hotCitys{
+        color: blue;
     }
     .city_title{
         width: 100%;

@@ -1,37 +1,48 @@
 <template>
     <div id="app">
+        <transition name="fade">
+            <loading v-if="isLoading"></loading>
+        </transition>
         <router-view/>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
-    import home from "./page/home/home";
-    import Food from "./page/food/Food";
-    import Ctype from "./page/Ctype/Ctype";
-    import FootGuide from "./components/footer/footGuide";
-    import Evaluate from "./page/Cshop/Evaluate";
-    import Score from "./components/common/score";
-    import FoodSafe from "./components/common/foodSafe";
-    import Search from "./page/search/search";
+    import Loading from "./components/common/loading";
     export default {
         name: 'App',
+        components: {Loading},
+        data(){
+            return{
+                isLoading: true
+            }
+        },
         methods:{
             // 获取当前城市的信息
             getCityInfor(id){
                 Vue.axios.get("https://elm.cangdu.org/v1/cities/"+id).then((res)=>{
-                    // console.log(res.data);
-                    this.cityInfor = res.data;
-                    this.$store.state.latitude = this.cityInfor.latitude;
-                    this.$store.state.longitude = this.cityInfor.longitude;
-                    this.$store.state.localCity = this.cityInfor.name;
-                    // console.log(this.$store.state.latitude,this.$store.state.longitude,this.$store.state.localCity)"https://elm.cangdu.org/shopping/restaurants?latitude="+this.$store.state.latitude+"&longitude="+this.$store.state.longitude
+                    this.$store.commit('changeCityInfo1',res.data);
+                    this.isLoading = false
                 }).catch((error)=>{
                     console.log('请求错误:1' ,error);
                 });
             }
         },
-        mounted(){
+        created(){
+            Vue.axios.get('https://elm.cangdu.org/v1/user').then((res)=>{
+                console.log(res.data,'111UserInfo');
+                this.$store.commit('byUserInfo',res.data);
+                if(this.$store.state.userInfo){
+                    Vue.axios.get('https://elm.cangdu.org/v1/users/'+res.data.id+'/addresses').then((res)=>{
+                        this.$store.commit('byChoosedAddress',res.data);
+                        this.$store.commit('bySearchAddress',res.data[0]);
+                    }).catch((error)=>{
+                        console.log('请求错误:' ,error);
+                    });
+                }
+                console.log(res.data,123113)
+            });
             // 获取当前城市
             Vue.axios.get('https://elm.cangdu.org/v1/cities?type=guess').then((res)=>{
                 this.$store.state.guessCity = res.data;
@@ -51,6 +62,7 @@
         text-decoration: none;
         list-style: none;
         border: none;
+        outline: none;
         box-sizing: border-box;
     }
     html,body{
@@ -63,6 +75,7 @@
         width: 100%;
         height: 100%;
     }
+
 </style>
 
 

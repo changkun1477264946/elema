@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="wrapper">
+        <div class="wrapper" v-if="!showSafe">
             <Zhead>
                 <div slot="logo"  @click="$parent.changeAaa1">
                     <!--<router-link :to="{}">-->
@@ -46,6 +46,11 @@
                 </div>
             </div>
         </div>
+        <transition name="cmp"  mode="out-in">
+            <Safety v-if="showSafe"></Safety>
+        </transition>
+
+
     </div>
 </template>
 
@@ -53,29 +58,42 @@
     import Vue from 'vue';
     import Zhead from "../../../components/header/head";
     import foodSafe from "../../../components/common/foodSafe";
+    import Safety from "./Safety";
     export default {
         name: "foodDetection",
-        components: {Zhead,foodSafe},
+        components: {Safety, Zhead,foodSafe},
         data(){
             return {
                 datas:{},
                 datas1:[],
                 datas2:[],
+                showSafe:false,
             }
         },
-        mounted(){
+        created(){
             //+this.$route.query.id
             Vue.axios.get('https://elm.cangdu.org/shopping/restaurant/3301').then((res)=>{
                 this.datas=res.data;
                 this.datas1=res.data.supports;
-                this.datas2=res.data.activities;
+                this.datas2=res.data.activities[0].description;
+                console.log(this.datas1,'41544156456456')
+                console.log(this.datas2,'41544156456456')
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });
         },
+        computed:{
+            // datass(){
+            //
+            //
+            // }
+        },
         methods:{
             insafety(){
-                this.$router.push({path:"safety",query:{}});
+                this.showSafe=true;
+            },
+            insafety1(){
+                this.showSafe=false;
             }
         }
     }
@@ -129,6 +147,26 @@
         padding: .7rem .6rem .7rem 0;
         margin-left: .6rem;
         border-bottom: .025rem solid #f5f5f5;
+    }
+    @keyframes show {
+        0%{
+            opacity: 1;
+            transform: translateX(0%);
+        }
+        50%{
+            opacity: 0.5;
+            transform: translateX(50%);
+        }
+        100%{
+            opacity: 0;
+            transform: translateX(100%);
+        }
+    }
+    .cmp-leave-active{
+        animation: show 0.1s;
+    }
+    .cmp-enter-active{
+        animation: show 0.1s reverse;
     }
 </style>
 

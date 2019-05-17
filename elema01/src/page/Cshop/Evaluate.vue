@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper" :style="contentStyleObj">
-        <score :scoreId="$route.query.id"></score>
+        <score :scoreId="$parent.$route.query.id"></score>
         <div class="border">
             <div class="tag_list_ul">
                 <li :class="{tagActivity:(a1===i),unsatisfied:(data.name==='不满意')}" @click="arr(i)" v-for="(data,i) in datas1" :key="i">{{data.name}}({{data.count}}) </li>

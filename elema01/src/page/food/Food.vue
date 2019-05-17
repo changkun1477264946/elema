@@ -1,12 +1,15 @@
 <template>
     <div class="qq">
+        <transition name="fade">
+            <loading v-if="isLoading"></loading>
+        </transition>
         <zhead>
-            <div slot="logo" >
+            <router-link :to="{path:'/search'}" slot="logo" class="logo">
                 <span class="glyphicon glyphicon-search
                 "></span>
-            </div>
-            <div slot="title">郑州站</div>
-            <div slot="login"><router-link :to="{path:'/login'}">登录 | 注册</router-link></div>
+            </router-link>
+            <router-link slot="title" :to="{path:'/home'}" class="tilte11">{{$store.state.localCity}}</router-link>
+            <div slot="login"  class="login"><router-link :to="{path:'/login'}">登录 | 注册</router-link></div>
         </zhead>
         <div>
             <swiper :options="swiperOption" class="swiperC">
@@ -36,35 +39,38 @@
                 <Icon type="md-filing"/>
                 附近商家
             </h2>
-            <Row class="store" v-for="(stores,i) in goodList" :key="i">
-                <Col span="5">
-                    <img :src="'//elm.cangdu.org/img/'+stores.image_path" alt="">
-                </Col>
-                <Col span="19" class="storeBody">
-                    <div class="roww">
-                        <span class="pingpai pull-left">品牌</span>
-                        <span class="fs2">{{stores.name}}</span>
-                        <span class="pull-right">保准票</span>
-                    </div>
-                    <div class="fs1 text-right">
-                        <div class="pull-left">
+            <Row class="store" v-for="(stores,i) in goodList" :key="i" >
+                <div @click="goCtype(stores.id)">
+                    <Col span="5">
+                        <img :src="'//elm.cangdu.org/img/'+stores.image_path" alt="">
+                    </Col>
+                    <Col span="19" class="storeBody">
+                        <div class="roww">
+                            <span class="pingpai pull-left">品牌</span>
+                            <span class="fs2">{{stores.name}}</span>
+                            <span class="pull-right">保准票</span>
+                        </div>
+                        <div class="fs1 text-right">
+                            <div class="pull-left fss1"  >
                             <span  class="sc">
                                 <Rate disabled  show-text allow-half v-model="valueCustomText" class="v">
                                      <span style="color: #f5a623">{{ valueCustomText }}</span>
                                 </Rate>
                             </span>
-                            <span class="fs11">月售{{stores.recent_order_num}}单</span>
-                        </div>
-                        <span class="bird pull-right">
+                                <span class="fs11">月售{{stores.recent_order_num}}单</span>
+                            </div>
+                            <span class="bird pull-right">
                             蜂鸟专送
                         </span>
-                        <div class="clearfix"></div>
-                    </div>
-                    <p>
-                        <span class="fs1 pull-left">¥{{stores.float_minimum_order_amount}}起送 / 配送费约¥{{stores.float_delivery_fee}}</span>
-                        <span class="pull-right fs1">{{stores.distance}}{{stores.order_lead_time}}</span>
-                    </p>
-                </Col>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>
+                            <span class="fs1 pull-left"> &nbsp;¥{{stores.float_minimum_order_amount}} 起送 / 配送费约 ¥{{stores.float_delivery_fee}}</span>
+                            <span class="pull-right fs1">{{stores.distance}} {{stores.order_lead_time}}</span>
+                        </p>
+                    </Col>
+                </div>
+
             </Row>
         </div>
         <footGuide></footGuide>
@@ -81,6 +87,7 @@
         components: {Zhead,footGuide},
         data(){
             return {
+                isLoading: true,
                 value: 0,
                 valueCustomText: 4.5,
                 swiperOption: {
@@ -110,17 +117,19 @@
                 this.foods=res.data;
                 this.foods1=res.data.slice(0, this.foods.length/2);
                 this.foods2=res.data.slice(this.foods.length/2);
+                this.isLoading = false
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });
         },
         methods:{
-
+            goCtype(i){
+                this.$router.push({path:'/ctype',query:{id:i}})
+            },
         },
         computed:{
             getGoodsList(){
                 Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude='+this.$store.state.latitude+'&longitude='+this.$store.state.longitude).then((res)=>{
-                    console.log(res.data,'11');
                     this.goodList = res.data
                 }).catch((error)=>{
                     console.log('请求错误:' ,error);
@@ -132,8 +141,25 @@
 </script>
 
 <style scoped>
-    .login a{
+    .logo{
+        text-align: left;
+        display: block;
+        padding-left: 1rem;
+    }
+    .tilte11{
+        font-size: 0.85rem;
+        font-weight: 400;
+        padding: 0 0.6rem;
+        margin-top: -0.1rem;
+        margin-left: -0.2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    a{
         color: white;
+        list-style: none;
+        text-decoration: none;
     }
     .qq{
         width: 100%;
@@ -172,15 +198,29 @@
     }
     .v{
         vertical-align: 0;
-
+    }
+    .fss1{
+        position: relative;
+        width: 100%;
     }
     .sc{
-        transform: scale(0.5);
+        transform: scale(0.45) ;
+        /*translate(-50%,-50%)*/
         position: absolute;
-        top: -0rem;
-        left: -1.5rem;
-
+        top:-.5rem;
+        left: -1.8rem;
+        bottom: -1.2rem;
+        margin: 0;
+        padding: 0;
     }
+    /*.sc{*/
+        /*transform: scale(0.45) ;*/
+    /*!*translate(-50%,-50%)*!*/
+        /*position: absolute;*/
+        /*top:-8%;*/
+        /*left: -16%;*/
+
+    /*}*/
     .store{
         border-bottom: 0.05px solid #f1f1f1;
         padding: 0.5rem 0.2rem 0.2rem;

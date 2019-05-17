@@ -34,8 +34,16 @@
       color: white;
       text-align: center;
       line-height: 2.4rem;
+      overflow: hidden;
+
   }
   .header-login{
-      font-size: 0.5rem;
+      padding: 0;
+      font-size: 0.6rem;
+      text-align: center;
   }
+    div{
+        margin: 0;
+        padding: 0;
+    }
 </style>

@@ -1,30 +1,22 @@
 <template>
     <div class="footer">
         <div class="footer-icon">
-            <section @click="changebgc(arr[0])">
-                <router-link :to="{}" >
-                    <Icon type="ios-basket" size="25" :class="{icon:change === 1? true : false}" />
-                    <p>外卖</p>
-                </router-link>
-            </section>
-            <section @click="changebgc(arr[1])">
-                <router-link :to="{}" >
-                    <Icon type="ios-compass-outline" size="25"  :class="{icon:change === 2? true :false}"/>
-                    <p>搜索</p>
-                </router-link>
-            </section>
-            <section @click="changebgc(arr[2])">
-                <router-link :to="{}" >
-                    <Icon type="md-copy" size="25" :class="{icon:change === 3? true :false}"/>
-                    <p>订单</p>
-                </router-link>
-            </section>
-            <section @click="changebgc(arr[3])">
-                <router-link :to="{}" >
-                    <Icon type="ios-contact" size="25" :class="{icon:change === 4? true :false}"/>
-                    <p>我的</p>
-                </router-link>
-            </section>
+            <router-link :to="{path:'/food'}" @click="changebgc(1)">
+                <Icon type="ios-basket" size="25" :color="$router.currentRoute.path === '/food' ? '#2598e8':'black'" />
+                <p>外卖</p>
+            </router-link>
+            <router-link :to="{path:'/search'}" @click="changebgc(2)">
+                <Icon type="ios-compass-outline" size="25" :color="$router.currentRoute.path === '/search'? '#2598e8':'black'"/>
+                <p>搜索</p>
+            </router-link>
+            <router-link :to="{path:'/orderList'}" @click="changebgc(3)">
+                <Icon type="md-copy" size="25"  :color="$router.currentRoute.path === '/orderList'? '#2598e8':'black'"/>
+                <p>订单</p>
+            </router-link>
+            <router-link :to="{path:'/login'}" @click="changebgc(4)">
+                <Icon type="ios-contact" size="25" :color="$router.currentRoute.path === '/login' ? '#2598e8':'black'"/>
+                <p>我的</p>
+            </router-link>
         </div>
 
     </div>
@@ -36,14 +28,8 @@
         data(){
             return {
                 bgc:'#28b0ff',
-                change:'',
-                arr:[1,2,3,4]
+                arr:0
             }
-        },
-        methods: {
-            changebgc(a) {
-                this.change = a
-            },
         }
     }
 </script>
@@ -64,12 +50,9 @@
         text-align: center;
         justify-content: space-around;
     }
-    section a{
+   a{
         text-decoration: none;
         color: black;
-    }
-    .icon{
-        color: #2598e8;
     }
     p{
         font-size: 0.6rem;

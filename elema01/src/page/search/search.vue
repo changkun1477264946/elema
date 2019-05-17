@@ -1,8 +1,8 @@
 <template>
     <div class="cc">
         <zhead>
-            <div slot="logo" >
-                <Icon type="ios-arrow-back" class="logo"/>
+            <div slot="logo" class="logo" @click="$router.back(-1)">
+                <Icon type="ios-arrow-back" />
             </div>
             <div slot="title" class="title">搜索</div>
             <!--<div slot="login">登录 | 注册</div>-->
@@ -75,7 +75,6 @@
             footerIf(){
                 Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude='+this.$store.state.latitude+'&longitude='+this.$store.state.longitude+'&limit=500').then((res)=>{
                     this.getDatas = res.data;
-                    console.log(this.getDatas,res.data)
                 }).catch((error)=>{
                     console.log('请求错误:1' ,error);
                 });
@@ -108,7 +107,6 @@
                         this.datasName.push(data);
                     }
                 });
-                console.log(this.datasName,'1111');
             },
             clearInput(){
                 this.show1 =false;
@@ -127,15 +125,20 @@
 
 <style scoped>
     .cc{
-        padding-top: 2.3rem;
+        padding-top: 2.4rem;
         width: 100%;
     }
-    .title{
-        font-size: .9rem;
-        font-weight: 700;
-    }
     .logo{
-        font-size: 1.4rem;
+        text-align: left;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        padding-left: 0.2rem;
+    }
+    .title{
+        font-size: .8rem;
+        color: #fff;
+        text-align: center;
+        font-weight: 700;
     }
     .cbody{
         background-color: #fff;

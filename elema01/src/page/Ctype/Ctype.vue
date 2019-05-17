@@ -1,19 +1,24 @@
 <template>
     <div>
+        <transition name="fade">
+            <loading v-if="isLoading"></loading>
+        </transition>
         <!-- 店铺信息-->
         <div ref="element" v-show="!aaa1">
-            <div class="mineTitle">
+            <div class="mineTitle" :style="bgc">
                 <!--<Icon type="ios-arrow-back" />-->
                 <div>
                     <Row>
                         <Col span="5">
-                            <img :src="'https://elm.cangdu.org/img/'+datas.image_path" alt="">
+                           <router-link :to="{path:'/food'}">
+                               <img :src="'https://elm.cangdu.org/img/'+datas.image_path" alt="">
+                           </router-link>
                         </Col>
                         <Col span="19">
                             <!--<router-link :to="{path:'/fooddetection',query:{id: datas.id}}">-->
                                 <div class="mine_div1" @click="changeAaa">
                                     <p class="mine_p1">{{datas.name}}</p>
-                                    <p class="mine_p2">商家配送 / 分钟送达 / {{datas.piecewise_agent_fee.tips}}</p>
+                                    <p class="mine_p2">商家配送 / 分钟送达 / {{datas1}}</p>
                                     <p class="mine_p3">公告 : {{datas.promotion_info}}</p>
                                 </div>
                             <!--</router-link>-->
@@ -22,7 +27,7 @@
                 </div>
                 <div class="mine_div2" @click="changeMeng">
                     <span class="mine_del">减</span>
-                    {{datas.activities[0].description}} ( APP专享 )
+                    {{datas2}} ( APP专享 )
                     <span class="pull-right fss">一个活动 ></span>
                 </div>
                 <transition name="ck">
@@ -31,7 +36,7 @@
                         <div class="youhui">
                             <div class="div11">
                                 <div class="div11_top">优惠信息</div>
-                                <div class="div11_down"><span class="mine_del">减</span> &nbsp;{{datas.activities[0].description}} ( APP专享 )</div>
+                                <div class="div11_down"><span class="mine_del">减</span> &nbsp;{{datas2}} ( APP专享 )</div>
                             </div>
                         </div>
                         <div class="youhui">
@@ -40,8 +45,6 @@
                                 <div class="div11_down">{{datas.description}}</div>
                             </div>
                         </div>
-                        <!--<span><Icon type="ios-close-circle" class="tubiao" /></span>-->
-
                         <span @click="changeMeng1"><Icon type="ios-close-circle-outline" class="tubiao"  /></span>
                     </div>
                 </transition>
@@ -50,12 +53,12 @@
                 <Row>
                     <Col span="12"  >
                         <div @click="changebgc(0)">
-                            <router-link :to="{path:'/ctype/cshop',query:{id: datas.id}}" :class="{ah:change=== 0?true:false}">商品</router-link>
+                            <router-link :to="{path:'/ctype/cshop',query:{id: datas.id}}" :class="{ah:change===0}">商品</router-link>
                         </div>
                     </Col>
                     <Col span="12">
                         <div @click="changebgc(1)">
-                            <router-link :to="{path:'/ctype/evaluate',query:{id: datas.id}}"  :class="{ah:change===1?true:false}">评价</router-link>
+                            <router-link :to="{path:'/ctype/evaluate',query:{id: datas.id}}"  :class="{ah:change===1}">评价</router-link>
                         </div>
                     </Col>
                 </Row>
@@ -63,34 +66,50 @@
             <router-view></router-view>
         </div>
         <transition name="cmp"  mode="out-in">
-            <food-detection v-show="aaa1"></food-detection>
+            <food-detection v-if="aaa1"></food-detection>
         </transition>
-
     </div>
-
 </template>
 <script>
     import Vue from 'vue';
     import FoodDetection from "../Cshop/foodSafeDetetion/foodDetection";
+    import Loading from "../../components/common/loading";
     export default {
         name: "Ctype",
-        components: {FoodDetection},
+        components: {Loading, FoodDetection},
         data(){
             return {
+                isLoading: true,
                 change:0,
                 datas:[],
                 mengChang:false,
-                aaa1:false
+                aaa1:false,
+                datas1:'',
+                datas2:'',
+                datas3:'',
+                bgc:{},
             }
         },
         mounted(){
             //+this.$route.query.id
-            Vue.axios.get('https://elm.cangdu.org/shopping/restaurant/3301').then((res)=>{
+
+            let a = Math.floor(Math.random()*255);
+            let b = Math.floor(Math.random()*255);
+            let c = Math.floor(Math.random()*255);
+            // e.target.style.backgroundColor= "rgb("+a+","+b+","+c+")";
+            this.bgc={background:"rgba("+a+","+b+","+c+','+0.5+")"};
+
+            Vue.axios.get('https://elm.cangdu.org/shopping/restaurant/'+this.$route.query.id).then((res)=>{
                 console.log(res.data,'aaa3284');
                 this.datas=res.data;
+                this.datas1=this.datas.piecewise_agent_fee.tips;
+                this.datas2=this.datas.activities[0].description;
+                this.datas3=this.datas.delivery_mode.color;
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });
+            this.$store.state.shopid=this.$route.query.id; // 注意:后期改
+            this.isLoading = false
         },
         methods:{
             changeAaa(){
@@ -107,7 +126,7 @@
             },
             changebgc(d){
                 this.change=d;
-            }
+            },
         },
     }
 
@@ -122,6 +141,7 @@
         background-color: #262626;
         z-index: 200;
         padding: 1.25rem;
+
     }
     .mh3{
         text-align: center;
@@ -160,11 +180,12 @@
         color: rgba(153, 153, 153,0.8);
     }
     .mineTitle {
+        background-size: cover;
         height: 5rem;
         font-size: 0.6rem;
         position: relative;
         z-index: 10;
-        background-color: rgba(119,103,137,.43);
+        /*background-color: rgba(0,0,0,.8);*/
         padding: .4rem 0 .4rem .4rem;
         width: 100%;
         overflow: hidden;

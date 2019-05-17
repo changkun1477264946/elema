@@ -35,15 +35,9 @@
                 value2: 0
             }
         },
-        props:{
-          scoreId:{
-              type:String,
-              default:"无"
-          }
-        },
         mounted(){
             console.log(this.scoreId,'nissss');
-            Vue.axios.get('https://elm.cangdu.org/ugc/v2/restaurants/'+this.scoreId+'/ratings/scores').then((res)=>{
+            Vue.axios.get('https://elm.cangdu.org/ugc/v2/restaurants/'+this.$store.state.shopid+'/ratings/scores').then((res)=>{
                 this.value= Math.round(res.data.overall_score*10)/10;
                 this.value1= Math.round(res.data.service_score*10)/10;
                 this.value2= Math.round(res.data.food_score*10)/10;

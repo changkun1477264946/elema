@@ -1,38 +1,70 @@
 <template>
     <div class="goodsss" :style="contentStyleObj">
+        <transition name="fade">
+            <loading v-if="isLoading"></loading>
+        </transition>
         <Col class="leftShop" span="6">
-            <a :href="'#'+data.name" @click="changeA(i)" :class="{leftAa:changeAa===i?true:false}" class="left"  v-for="(data,i) in datas" :key="i">{{data.name}}</a>
+            <a :href="'#'+data.name+i" @click="changeA(i)" :class="{leftAa:changeAa===i}" class="left"  v-for="(data,i) in datas" :key="i">{{data.name}}</a>
         </Col>
         <Col class="rightShop" span="18">
             <div v-for="(data,i) in datas" :key="i" class="cshop">
-                <div class="chead" :id="data.name">{{data.name}}<span class="fs111">{{data.description}}</span></div>
+                <div class="chead" :id="data.name+i">{{data.name}}<span class="fs111">{{data.description}}</span></div>
                 <div class="cbody" v-for="(food,k) in data.foods" :key="k">
-                    <Col  class="cleft" span="5">
-                        <img :src="'//elm.cangdu.org/img/'+food.image_path" alt="">
-                    </Col >
-                    <Col  class="cright" span="19">
-                        <div class="r1">{{food.name}}</div>
-                        <div class="r2">{{food.description}}</div>
-                        <!--<div class="r3">{{food.tips}}</div>-->
-                        <div class="r3">月售{{food.rating_count}}份 &nbsp;&nbsp; 好评率{{food.satisfy_rate}}%</div>
-                        <div class="r5">
-                            <span class="s1">¥{{food.specfoods[0].price}}</span>
-                            <span class="s2">起</span>&nbsp;&nbsp;
-                            <span class="s3 pull-right">选规格</span>
-                        </div>
-                    </Col >
+                        <Col  class="cleft" span="5" @click="goShoppingInfor(food)">
+                            <img :src="'//elm.cangdu.org/img/'+food.image_path" alt="">
+                        </Col >
+                        <Col  class="cright" span="19">
+                            <div  @click="goShoppingInfor(food)">
+                            <div class="r1">{{food.name}}</div>
+                            <div class="r2">{{food.description}}</div>
+                            <!--<div class="r3">{{food.tips}}</div>-->
+                            <div class="r3">月售{{food.rating_count}}份 &nbsp;&nbsp; 好评率{{food.satisfy_rate}}%</div> </div>
+                            <div class="r5">
+                                <span class="s1">¥{{food.specfoods[0].price}}</span>
+                                <span class="s2">起</span>&nbsp;&nbsp;
+                            </div>
+                            <RbuttonA :foodT="food" :shop="$parent.datas"></RbuttonA>
+                        </Col >
                 </div>
             </div>
         </Col>
+        <div v-if="show1 = $store.state.cartListNum > 0 ? show1 : false" class="goodsListTop">
+            <div class="goodsList">
+                <ul>
+                    <li class="cartGoods">
+                        <span class="span1">购物车</span>
+                        <span class="span2" @click="clearList">
+                            <Icon type="ios-trash-outline" class="span2_i"/>清空
+                        </span>
+                    </li>
+                    <li v-for="(list,i) in $store.state.cartList" class="goodssli" v-if="list.count!==0">
+                        <span class="sp1">{{list.f.name}}</span>
+                        <span class="sp2">¥ {{list.f.specfoods[0].price*list.count}}</span>
+                        <RbuttonA :foodT="list.f" class="rara"></RbuttonA>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <shopping-cart></shopping-cart>
+        </div>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
+    import ShoppingCart from "../../components/common/shoppingCart";
+    import RbuttonA from "../../components/common/RbuttonA";
+    import Loading from "../../components/common/loading";
     export default {
         name: "Cshop",
+        components: {Loading, RbuttonA, ShoppingCart},
         data(){
             return {
+                isLoading: true,
+                show1:false,
+                proArr:[],
                 datas:[],
                 changeAa:0,
                 contentStyleObj:{
@@ -40,10 +72,11 @@
                 },
             }
         },
-    // +this.$route.query.id
         mounted(){
-            Vue.axios.get('https://elm.cangdu.org/shopping/v2/menu?restaurant_id=1').then((res)=>{
+            Vue.axios.get('https://elm.cangdu.org/shopping/v2/menu?restaurant_id='+this.$parent.$route.query.id).then((res)=>{
                 this.datas=res.data;
+                console.log(res.data,1111);
+                this.isLoading = false
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });
@@ -53,12 +86,96 @@
             changeA(i){
                 this.changeAa=i;
             },
-
+            goShoppingInfor(food){
+                this.$router.push({path:'/shoppinginfor',query:{data:food}})
+            },
+            showGoodsList(){
+                if(this.$store.state.cartListNum >= 1){
+                    this.show1 = !this.show1
+                }
+            },
+            clearList(){
+              this.$store.commit('clearCartList');
+            },
         }
     }
 </script>
 
 <style scoped>
+    .goodsListTop{
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 2.2rem;
+        background: rgba(0,0,0,0.6);
+    }
+    .goodsList{
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 2.2rem;
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        margin: 0;
+    }
+    .rara{
+        vertical-align: middle;
+    }
+    .cartGoods{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .3rem .6rem;
+        background-color: #eceff1;
+    }
+    .cartGoods .span1{
+        font-size: .7rem;
+        color: #666;
+    }
+    .cartGoods .span2{
+        font-size: .6rem;
+        color: #666;
+    }
+    .span2_i{
+        font-size: 0.7rem;
+        vertical-align: text-top;
+    }
+    .goodssli{
+        padding: .0rem .6rem;
+        line-height: 2rem;
+        background: #fff;
+        position: relative;
+    }
+    .sp1{
+        display: inline-block;
+        height: 2rem;
+        padding: 0;
+        margin: 0;
+        vertical-align: middle;
+        /*line-height: 2rem;*/
+        width: 40%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: .8rem;
+        color: #666;
+        font-weight: 700;
+    }
+    .sp2{
+        font-size: .7rem;
+        color: #f60;
+        font-weight: 700;
+        position: absolute;
+        left: 57%;
+    }
+
+
+
+
     .fs111{
         width: 100%;
         height: 100%;
@@ -98,9 +215,6 @@
         border-left: solid #3190e8 0.15rem;
 
     }
-    /*.goodsss{*/
-    /*overflow:hidden;*/
-    /*}*/
     .cshop{
         border-bottom: 1px solid #f8f8f8;
         position: relative;
@@ -161,17 +275,6 @@
     .r5 .s2{
         font-size: .5rem;
         color: #666;
-    }
-    .r5 .s3{
-        margin-top: 0.4rem;
-        display: block;
-        font-size: .55rem;
-        color: #fff;
-        padding: .1rem .4rem 0.1rem 0.1rem;
-        background-color: #3190e8;
-        border-radius: .2rem;
-        border: 1px solid #3190e8;
-
     }
     .r5 .s1{
         font-size: .7rem;
