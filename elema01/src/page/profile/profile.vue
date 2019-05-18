@@ -132,9 +132,8 @@
             // console.log(this.name)
 
             Vue.axios.get('https://elm.cangdu.org/v1/user').then((response)=>{
-
-                this.allUser = response.data
-                if(this.allUser.username) {
+                if(Object.keys(response.data).length>5) {
+                    this.allUser = response.data
                     console.log(response.data.username);
                     this.imageurl = this.allUser.avatar
                     // this.name = this.allUser.username;
@@ -145,12 +144,12 @@
                 }else{
                     // this.name='登录/注册'
                     this.$store.commit('byUserInfo1','登录/注册');
-                    this.tel='暂无手机号'
-                    this.showimg=true
+                    this.tel='暂无手机号';
+                    this.showimg=true;
                 }
             });
 
-            this.name=this.$store.state.userInfo.username;
+            // this.name=this.$store.state.userInfo.username;
 
 
         },
@@ -170,9 +169,9 @@
 
             infor2(){
                 Vue.axios.get('https://elm.cangdu.org/v2/signout').then((response)=>{
-                    this.allUser=response.data
+                    this.$store.commit('clearUserInfo');
+                    this.allUser=response.data;
                     console.log(this.allUser);
-
                 });
                 // this.name='登录/注册'
                 this.$store.commit('byUserInfo1','登录/注册');

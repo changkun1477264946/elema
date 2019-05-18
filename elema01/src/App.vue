@@ -32,18 +32,18 @@
         created(){
             Vue.axios.get('https://elm.cangdu.org/v1/user').then((res)=>{
                 console.log(res.data,'111UserInfo');
-                console.log(res.data,888)
-                // this.$store.commit('byUserInfo',res.data.username);
-                this.$store.commit('byUserInfo',res.data);
-                if(this.$store.state.userInfo){
-                    Vue.axios.get('https://elm.cangdu.org/v1/users/'+res.data.id+'/addresses').then((res)=>{
-                        this.$store.commit('byChoosedAddress',res.data);
-                        this.$store.commit('bySearchAddress',res.data[0]);
+                if(Object.keys(res.data).length>5){
+                    this.$store.commit('byUserInfo',res.data);
+                    Vue.axios.get('https://elm.cangdu.org/v1/users/'+res.data.id+'/addresses').then((ress)=>{
+                        this.$store.commit('byChoosedAddress',ress.data);
+                        this.$store.commit('bySearchAddress',ress.data[0]);
+                        this.isLoading = false
                     }).catch((error)=>{
                         console.log('请求错误:' ,error);
                     });
+                }else {
+                    this.$store.commit('byUserInfo',{});
                 }
-                console.log(res.data,123113)
             });
             // 获取当前城市
             Vue.axios.get('https://elm.cangdu.org/v1/cities?type=guess').then((res)=>{

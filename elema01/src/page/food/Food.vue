@@ -9,7 +9,12 @@
                 "></span>
             </router-link>
             <router-link slot="title" :to="{path:'/home'}" class="tilte11">{{$store.state.localCity}}</router-link>
-            <div slot="login"  class="login"><router-link :to="{path:'/login'}">登录 | 注册</router-link></div>
+            <div slot="login"  class="login" v-if="Object.keys($store.state.userInfo).length<=3">
+                <router-link :to="{path:'/login'}">登录 | 注册</router-link>
+            </div>
+            <div slot="login"  class="login1" v-if="Object.keys($store.state.userInfo).length>3">
+                <router-link :to="{path:'/profile'}"><Icon type="ios-person-outline" /></router-link>
+            </div>
         </zhead>
         <div>
             <swiper :options="swiperOption" class="swiperC">
@@ -155,6 +160,12 @@
         text-align: left;
         display: block;
         padding-left: 1rem;
+    }
+    .login1{
+        font-size: 1.4rem;
+        text-align: right;
+        padding-right: 0.6rem;
+        line-height: 2.1rem;
     }
     .tilte11{
         font-size: 0.85rem;

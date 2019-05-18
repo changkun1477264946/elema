@@ -97,8 +97,9 @@
                             this.showpropt = this.allUser.message;
                             return
                         } else {
-                            this.$store.commit('byUserInfo1',this.userName);
-                            this.$router.push({path: '/profile', query: {name: this.$store.state.userInfo.username}});
+                            this.getUserData();
+                            // this.$store.commit('byUserInfo1',this.userName);
+
                             console.log(this.$store.state.userInfo.username);
                         }
                     });
@@ -106,7 +107,25 @@
             },
             warnclick(){
                 this.showWarn=false
+            },
+            getUserData(){
+                Vue.axios.get('https://elm.cangdu.org/v1/user').then((res)=>{
+                    if(Object.keys(res.data).length>5){
+                        this.$store.commit('byUserInfo',res.data);
+                        Vue.axios.get('https://elm.cangdu.org/v1/users/'+res.data.id+'/addresses').then((ress)=>{
+                            this.$store.commit('byChoosedAddress',ress.data);
+                            this.$store.commit('bySearchAddress',ress.data[0]);
+                            this.$router.push({path: '/profile', query: {name: res.data.username}});
+                            // this.isLoading = false
+                        }).catch((error)=>{
+                            console.log('请求错误:' ,error);
+                        });
+                    }else {
+                        this.$store.commit('byUserInfo',{});
+                    }
+                });
             }
+
         },
         created(){
             Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((response)=>{
