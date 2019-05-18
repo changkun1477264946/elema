@@ -186,7 +186,7 @@
         font-size: 0.7rem;
     }
     .infor_img{
-        width: 18.75rem;
+        width: 16rem;
         opacity: 0;
     }
     .infor_head{
@@ -195,7 +195,7 @@
         justify-content: space-between;
         margin-top:-0.5rem;
         margin-left: 0.5rem;
-        /*margin-right: 0.5rem;*/
+        /*margin-right: 0.3rem;*/
     }
     .img_photo{
         /*float: right;*/
@@ -206,7 +206,7 @@
         height: 2rem;
         border-radius: 50%;
         vertical-align: middle;
-        margin-left:11rem;
+        margin-left:10.8rem;
     }
     .infor_account2{
         width: 16rem;
