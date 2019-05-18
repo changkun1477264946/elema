@@ -108,7 +108,7 @@
             </div>
         </section>
         <section class="container">
-            <div class="con_content" v-for="(data,i) in goodsList">
+            <div class="con_content" v-for="(data,i) in goodsList" @click="goodsClick(data.id)">
                 <div class="con_photo">
                     <img :src="'//elm.cangdu.org/img/'+data.image_path" alt="" class="con_img">
                 </div>
@@ -191,6 +191,9 @@
             });
         },
         methods:{
+            goodsClick(i){
+                this.$router.push({path:'/ctype',query:{id:i}});
+            },
             // 头部三个下拉框
             chooseType(type){
                 console.log(this.title);

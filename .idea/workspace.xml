@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="60fb6ce0-5b34-4b44-b27c-315b6c451c21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elema01/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/elema01/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elema01/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/elema01/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elema01/src/components/footer/footGuide.vue" beforeDir="false" afterPath="$PROJECT_DIR$/elema01/src/components/footer/footGuide.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elema01/src/page/vipcard/vipcard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/elema01/src/page/vipcard/vipcard.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -61,26 +59,26 @@
         <counts>
           <entry key="js" value="7" />
           <entry key="rnc" value="1" />
-          <entry key="vue" value="46" />
+          <entry key="vue" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JavaScript" value="7" />
           <entry key="RNG Compact" value="1" />
-          <entry key="Vue.js" value="46" />
+          <entry key="Vue.js" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="47" />
-          <entry key="vue" value="695" />
+          <entry key="vue" value="882" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="47" />
-          <entry key="Vue.js" value="695" />
+          <entry key="Vue.js" value="882" />
         </counts>
       </usages-collector>
     </session>
@@ -97,35 +95,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/elema01/src/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="126" column="32" lean-forward="true" selection-start-line="126" selection-start-column="32" selection-end-line="126" selection-end-column="32" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#140#162#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/elema01/src/router/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="81" column="46" lean-forward="true" selection-start-line="81" selection-start-column="46" selection-end-line="81" selection-end-column="46" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/elema01/src/page/food/Food.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2490">
-              <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+            <state relative-caret-position="-3000">
+              <caret line="26" column="31" lean-forward="true" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#Rate#0;n#span#0;n#div#0;n#div#1;n#Col#1;n#div#0;n#Row#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#3250#3256#0" expanded="true" />
@@ -136,28 +109,51 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/elema01/src/components/footer/footGuide.vue">
+        <entry file="file://$PROJECT_DIR$/elema01/src/page/vipcard/vipcard.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="16" column="98" selection-start-line="16" selection-start-column="98" selection-end-line="16" selection-end-column="98" />
+            <state relative-caret-position="315">
+              <caret line="82" column="50" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/elema01/src/page/vipcard/children/invoiceRecord.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1290">
+              <caret line="52" column="24" lean-forward="true" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/elema01/src/components/footer/footGuide.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="11" column="49" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/elema01/src/page/orderList/orderList.vue">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/elema01/src/page/profile/profile.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="138" column="55" lean-forward="true" selection-start-line="138" selection-start-column="49" selection-end-line="138" selection-end-column="55" />
+            <state relative-caret-position="240">
+              <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/elema01/src/page/profile/children/children/address.vue">
+        <entry file="file://$PROJECT_DIR$/elema01/src/page/zfood/zfood.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="87" column="58" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
+            <state relative-caret-position="11400">
+              <caret line="535" lean-forward="true" selection-start-line="535" selection-end-line="535" />
             </state>
           </provider>
         </entry>
@@ -176,15 +172,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-297">
               <caret line="119" column="57" selection-start-line="119" selection-start-column="57" selection-end-line="119" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/elema01/src/page/login/login.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="99" column="59" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -225,20 +212,20 @@
         <option value="$PROJECT_DIR$/elema01/src/page/profile/children/children/children/add.vue" />
         <option value="$PROJECT_DIR$/elema01/src/page/profile/children/children/children/children/addDetail.vue" />
         <option value="$PROJECT_DIR$/elema01/src/page/service/service.vue" />
-        <option value="$PROJECT_DIR$/elema01/src/page/vipcard/vipcard.vue" />
         <option value="$PROJECT_DIR$/elema01/src/page/vipcard/children/useCart.vue" />
         <option value="$PROJECT_DIR$/elema01/src/page/vipcard/children/invoiceRecord.vue" />
         <option value="$PROJECT_DIR$/elema01/src/page/zfood/zfood.vue" />
         <option value="$PROJECT_DIR$/elema01/src/router/index.js" />
-        <option value="$PROJECT_DIR$/elema01/src/page/food/Food.vue" />
         <option value="$PROJECT_DIR$/elema01/src/page/login/login.vue" />
         <option value="$PROJECT_DIR$/elema01/src/main.js" />
         <option value="$PROJECT_DIR$/elema01/src/page/profile/children/children/address.vue" />
         <option value="$PROJECT_DIR$/elema01/src/page/profile/children/children/setusername.vue" />
         <option value="$PROJECT_DIR$/elema01/src/App.vue" />
-        <option value="$PROJECT_DIR$/elema01/src/page/profile/profile.vue" />
         <option value="$PROJECT_DIR$/elema01/src/page/profile/children/infor.vue" />
         <option value="$PROJECT_DIR$/elema01/src/components/footer/footGuide.vue" />
+        <option value="$PROJECT_DIR$/elema01/src/page/profile/profile.vue" />
+        <option value="$PROJECT_DIR$/elema01/src/page/food/Food.vue" />
+        <option value="$PROJECT_DIR$/elema01/src/page/vipcard/vipcard.vue" />
       </list>
     </option>
   </component>
@@ -256,7 +243,7 @@
       <path value="$PROJECT_DIR$/elema01/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="196" />
     <option name="y" value="18" />
     <option name="width" value="1113" />
@@ -330,34 +317,7 @@
               <item name="elema01" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="page" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="login" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Myitem" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="elema01" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="page" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="profile" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Myitem" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="elema01" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="page" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="profile" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="children" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Myitem" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="elema01" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="page" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="profile" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="children" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="children" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="vipcard" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="Myitem" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -453,12 +413,12 @@
       <updated>1557192991673</updated>
       <workItem from="1557192994741" duration="244000" />
       <workItem from="1557193950434" duration="1416000" />
-      <workItem from="1558142477739" duration="7155000" />
+      <workItem from="1558142477739" duration="8648000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19806000" />
+    <option name="totallyTimeSpent" value="21299000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -668,31 +628,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/elema01/src/page/vipcard/vipcard.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="215" column="5" lean-forward="true" selection-start-line="215" selection-start-column="5" selection-end-line="215" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/elema01/src/page/vipcard/children/useCart.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="170" column="26" lean-forward="true" selection-start-line="170" selection-start-column="26" selection-end-line="170" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/elema01/src/page/vipcard/children/invoiceRecord.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="52" column="24" lean-forward="true" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/elema01/src/page/zfood/zfood.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="535" lean-forward="true" selection-start-line="535" selection-end-line="535" />
         </state>
       </provider>
     </entry>
@@ -745,13 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/elema01/src/page/profile/profile.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="138" column="55" lean-forward="true" selection-start-line="138" selection-start-column="49" selection-end-line="138" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/elema01/src/page/profile/children/infor.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-297">
@@ -759,10 +691,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/elema01/src/page/orderList/orderList.vue">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elema01/src/components/footer/footGuide.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="11" column="49" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elema01/src/page/profile/profile.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elema01/src/page/zfood/zfood.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11400">
+          <caret line="535" lean-forward="true" selection-start-line="535" selection-end-line="535" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elema01/src/page/vipcard/children/invoiceRecord.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1290">
+          <caret line="52" column="24" lean-forward="true" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/elema01/src/page/food/Food.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2490">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        <state relative-caret-position="-3000">
+          <caret line="26" column="31" lean-forward="true" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#span#0;n#Rate#0;n#span#0;n#div#0;n#div#1;n#Col#1;n#div#0;n#Row#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#3250#3256#0" expanded="true" />
@@ -771,10 +734,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/elema01/src/components/footer/footGuide.vue">
+    <entry file="file://$PROJECT_DIR$/elema01/src/page/vipcard/vipcard.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="16" column="98" selection-start-line="16" selection-start-column="98" selection-end-line="16" selection-end-column="98" />
+        <state relative-caret-position="315">
+          <caret line="82" column="50" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
         </state>
       </provider>
     </entry>

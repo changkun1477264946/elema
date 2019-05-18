@@ -43,7 +43,7 @@
                 <p>开通会员</p>
                 <div class="money">
                     <span>1个月<Icon type="logo-yen" color="#f60"/><span class="money_q">20</span></span>
-                    <p class="money_r">购买</p>
+                    <p class="money_r" @click="moneyClick">购买</p>
                 </div>
             </div>
             <router-link :to="{path:'/vipcard/usecart'}" class="kh">
@@ -79,6 +79,9 @@
             // userCard(){
             //     this.$router.push({path:'/vipcard/usecart'}) ;
             // }
+            moneyClick(){
+                this.$router.push({path:'/payMoney'})
+            }
         },
         components:{
             zhead
