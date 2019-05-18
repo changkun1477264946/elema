@@ -102,6 +102,9 @@
 </script>
 
 <style scoped>
+    .goodsss{
+        padding-bottom: 2.5rem;
+    }
     .goodsListTop{
         position: fixed;
         z-index: 10;
@@ -172,10 +175,6 @@
         position: absolute;
         left: 57%;
     }
-
-
-
-
     .fs111{
         width: 100%;
         height: 100%;
