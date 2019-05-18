@@ -16,17 +16,23 @@
                 <!-- slides -->
                 <swiper-slide>
                     <Row class="text-center">
-                        <Col span="6"  v-for="(food,i) in foods1" :key="i" class="food">
-                            <div><img v-bind:src="'//fuss10.elemecdn.com/'+food.image_url"></div>
-                            <div class="title">{{food.title}}</div>
+                        <Col span="6"  v-for="(food,i) in foods1" :key="i" class="food" >
+                            <div @click="zfoodclick(food.title)">
+                                <div><img v-bind:src="'//fuss10.elemecdn.com/'+food.image_url"></div>
+                                <div class="title">{{food.title}}</div>
+                            </div>
+
                         </Col>
                     </Row>
                 </swiper-slide>
                 <swiper-slide>
                     <Row class="text-center">
-                        <Col span="6"  v-for="(food,i) in foods2" :key="i" class="food">
-                            <div><img v-bind:src="'//fuss10.elemecdn.com/'+food.image_url"></div>
-                            <div class="title">{{food.title}}</div>
+                        <Col span="6"  v-for="(food,i) in foods2" :key="i" class="food" >
+                            <div @click="zfoodclick(food.title)">
+                                <div><img v-bind:src="'//fuss10.elemecdn.com/'+food.image_url"></div>
+                                <div class="title">{{food.title}}</div>
+                            </div>
+
                         </Col>
                     </Row>
                 </swiper-slide>
@@ -127,6 +133,9 @@
             goCtype(i){
                 this.$router.push({path:'/ctype',query:{id:i}})
             },
+            zfoodclick(a){
+                this.$router.push({path:'/zfood',query:{title:a}})
+            }
         },
         computed:{
             getGoodsList(){

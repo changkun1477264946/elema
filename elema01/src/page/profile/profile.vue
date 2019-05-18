@@ -48,7 +48,7 @@
             <div class="profile_1reTe">
                 <ul>
                     <li  class="order">
-                        <router-link :to="{}">
+                        <router-link :to="{path:'/orderList'}">
                             <Icon type="md-reorder" class="icon" color="gray" size="23"/>
                             <p class="order_my">我的订单</p>
                             <Icon type="ios-arrow-forward" class="icon_black" color="#bfc4c5"/>
