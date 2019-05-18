@@ -10,6 +10,7 @@
 
         </zhead>
         <!---->
+
         <section class="zfood_sort">
             <div class="sort_item " @click="chooseType('food')">
                 <div class="item_a" :class="{choose:itemtype == 'food'}">
@@ -25,7 +26,7 @@
                             </li>
                         </ul>
                         <ul class="item_right" >
-                            <li class="right_list" v-for="(des,i) in allSortdes ">
+                            <li class="right_list" v-for="(des,i) in allSortdes " @click="rightClick(des.id,des.name)">
                                 <span class="item_fl">{{des.name}}</span>
                                 <span class="right_num">{{des.count}}</span>
                             </li>
@@ -39,7 +40,7 @@
                     <Icon type="md-arrow-dropdown"  size="24" :class="{icon:itemtype == 'sort'}"/>
                 </div>
                 <div class="list_sort" v-show="itemtype == 'sort'">
-                    <ul class="sort_list" >
+                    <ul class="sort_list">
                         <li class="sort_li" @click="clickli(arr[0])">
                             <Col span="1" class="right_num"><Icon type="ios-cloud-download-outline" color="blue" size="20"/></Col>
                             <Col span="16" class="right_num"><span class="sort_list_type" :class="{libgc:changeli==1?true:false}">智能排序</span></Col>
@@ -101,8 +102,8 @@
                     </div>
 
                     <div class="sx_select">
-                        <span>清空</span>
-                        <span>确定</span>
+                        <span class="sx_qk">清空</span>
+                        <span class="sx_qk sx_qk1">确定<span class="sx_num" v-show="filterNum">({{filterNum}})</span></span>
                     </div>
                 </div>
             </div>
@@ -147,6 +148,8 @@
                 title:'',
                 //下拉框名称
                 foodtitle:'',
+                //传过来的id
+                foodid:'',
                 //判断类型
                 itemtype:"",
                 //分类
@@ -164,12 +167,16 @@
                 //食品列表
                 goodsList:{},
                 //筛选
-                num:0
+                num:0,
+                filterNum:0,
+                allType:{}
             }
         },
         mounted(){
             this.title= this.$route.query.title;
             this.foodtitle=this.title;
+            this.foodid=this.$route.query.restaurant_category_id;
+            console.log(this.foodid+'aaa');
             //发起网络请求 获取数据
             Vue.axios.get('https://elm.cangdu.org/shopping/v1/restaurants/delivery_modes').then((response)=>{
                 this.allPsWay=response.data;
@@ -179,16 +186,19 @@
             });
             Vue.axios.get('https://elm.cangdu.org/shopping/v1/restaurants/activity_attributes').then((response)=>{
                 this.allStore=response.data;
-                console.log(this.allStore,"pppp");
+                // console.log(this.allStore,"pppp");
             }).catch((error)=>{
                 console.log('请求错误',error)
             });
-            Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude='+this.$store.state.latitude+'&longitude='+this.$store.state.longitude).then((response)=>{
-                console.log(response.data);
+
+            Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude='+this.$store.state.latitude+'&longitude='+this.$store.state.longitude+'&restaurant_category_id='+this.foodid).then((response)=>{
+
                 this.goodsList = response.data
+
             }).catch((error)=>{
                 console.log('请求错误' ,error);
             });
+
         },
         methods:{
             goodsClick(i){
@@ -211,6 +221,7 @@
                 //发起网络请求 获取数据
                 Vue.axios.get('https://elm.cangdu.org/shopping/v2/restaurant/category').then((response)=>{
                     this.allSort=response.data;
+                    // console.log(this.allSort)
                 }).catch((error)=>{
                     console.log('请求错误',error)
                 })
@@ -234,18 +245,33 @@
                 let url = '/' + path.substr(0, 1) + '/' + path.substr(1, 2) + '/' + path.slice(3) +'.'+lx;
                 return 'https://fuss10.elemecdn.com' + url;
             },
+            rightClick(i,name){
+                console.log(i,name);
+                this.title=name;
+                Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude='+this.$store.state.latitude+'&longitude='+this.$store.state.longitude+'&restaurant_category_id='+i).then((response)=>{
+
+                    this.goodsList = response.data
+                    console.log(this.goodsList);
+                }).catch((error)=>{
+                    console.log('请求错误' ,error);
+                });
+
+            },
             //排序
             clickli(e){
                 this.changeli=e;
+
             },
             //配送方式
             btnclick(e){
                 if(this.changeli==null){
                     this.num++;
-                    this.changeli=e
+                    this.changeli=e;
+                    // this.filterNum = this.filterNum+2
                 }else if(this.changeli=e){
                     this.num--;
-                    this.changeli=null
+                    this.changeli=null;
+                    // this.filterNum = this.filterNum-1
                 } else{
                     this.changeli=e
                 }
@@ -447,16 +473,20 @@
     .sx_select{
         padding: 0.5rem 0.25rem;
     }
-    .sx_select span{
+    .sx_select .sx_qk{
         padding:0.25rem 2.9rem;
         border-radius: 0.25rem;
     }
-    .sx_select span:nth-child(1){
+    .sx_select .sx_qk{
         background: white;
     }
-    .sx_select span:nth-child(2){
+    .sx_select .sx_qk1{
         background: #56d176;
         color: white;
+    }
+    .sx_select .sx_num{
+        color: white;
+        margin-left: 0.1rem;
     }
     .container{
         padding-top: 4.5rem;
