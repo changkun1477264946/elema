@@ -1,45 +1,64 @@
 <template>
-    <div class="balance_page">
-        <zhead>
-            <div slot="logo">
-                <router-link :to="{}">
-                    <Icon type="ios-arrow-back"  color="white" size="35" @click="$router.go(-1)"/>
-                </router-link>
-            </div>
-            <div slot="title" class="proflie_my">我的余额</div>
-        </zhead>
-        <section class="balance_content">
-            <section class="content">
-                <header class="content_header">
-                    <span class="content_title">当前余额</span>
-                    <span class="content_description">
-                        <img src="../../images/description.png" alt="" class="description_img">
-                        <router-link :to="{}">余额说明</router-link>
-                    </span>
-                </header>
-                <p class="content_number">
-                    <span>0.00</span>
-                    <span>元</span>
-                </p>
-                <div class="content_btn">
-                    提现
+    <div class="balance" >
+        <div class="balance_page">
+            <zhead>
+                <div slot="logo">
+                    <router-link :to="{}">
+                        <Icon type="ios-arrow-back"  color="white" size="35" @click="$router.go(-1)"/>
+                    </router-link>
                 </div>
+                <div slot="title" class="proflie_my">我的余额</div>
+            </zhead>
+            <section class="balance_content">
+                <section class="content" >
+                    <header class="content_header">
+                        <span class="content_title">当前余额</span>
+                        <span class="content_description">
+                        <img src="../../images/description.png" alt="" class="description_img">
+                            <span @click.prevent="showBalace"><router-link :to="{path:'/balance/detail'}">余额说明</router-link></span>
+                    </span>
+                    </header>
+                    <p class="content_number">
+                        <span>0.00</span>
+                        <span>元</span>
+                    </p>
+                    <div class="content_btn">
+                        提现
+                    </div>
+                </section>
             </section>
-        </section>
-        <p class="deal_detail">交易明细</p>
-        <div class="no_log">
-            <img src="../../images/no-log.png" class="no_img">
-            <p>暂无明细记录</p>
+            <p class="deal_detail">交易明细</p>
+            <div class="no_log">
+                <img src="../../images/no-log.png" class="no_img">
+                <p>暂无明细记录</p>
+            </div>
+
+        </div >
+        <div>
+            <transition name="router-slid" model="out-in">
+                <router-view></router-view>
+            </transition>
         </div>
+
+
     </div>
+
 </template>
 
 <script>
     import zhead from "../../components/header/head"
     export default {
         name: "balance",
+        data(){
+            return{
+
+
+            }
+        },
         components:{
             zhead
+        },
+        methods:{
         }
     }
 </script>
@@ -117,5 +136,12 @@
     }
     .no_log p{
         margin-top: 1rem;
+    }
+    .router-slid-enter-active, .router-slid-leave-active {
+        transition: all .4s;
+    }
+    .router-slid-enter, .router-slid-leave-active {
+        transform: translate3d(2rem, 0, 0);
+        opacity: 0;
     }
 </style>

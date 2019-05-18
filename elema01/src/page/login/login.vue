@@ -35,7 +35,7 @@
                 注册过的用户可凭账号密码登录
             </p>
             <div class="login_btn" @click="loginclick">登录</div>
-            <div class="login_forget" :to="{}"><router-link :to="{}">重置密码?</router-link></div>
+            <div class="login_forget"><router-link :to="{path:'/forget'}">重置密码?</router-link></div>
             <div class="login_warn" v-if="showWarn">
                 <div class="warn_top">
                     <p class="warn_tb"><Icon type="ios-alert-outline" size="90" color="#f8cb86"/></p>
@@ -44,6 +44,7 @@
                 <div class="warn_bottom" @click="warnclick">确认</div>
             </div>
         </section>
+
     </div>
 </template>
 
@@ -62,6 +63,7 @@
                 cadenum:null,
                 showpropt:null,
                 showWarn:false,
+
             }
         },
         methods:{
@@ -83,31 +85,34 @@
                 }else if(!this.cadenum){
                     this.showWarn=true;
                     this.showpropt='请输入验证码';
-                }
-                Vue.axios.post('https://elm.cangdu.org/v2/login',{
-                    'username':this.userName,
-                    'password':this.userPassword,
-                    'captcha_code':this.cadenum
-                }).then((response)=>{
-                    this.allUser=response.data;
-
-                    console.log(this.allUser);
-                });
-                if(this.allUser.message){
-                    this.showWarn=true;
-                    this.showpropt=this.allUser.message;
-                    return
+                }else  if(this.userName || this.userPassword || this.cadenum) {
+                    Vue.axios.post('https://elm.cangdu.org/v2/login', {
+                        'username': this.userName,
+                        'password': this.userPassword,
+                        'captcha_code': this.cadenum
+                    }).then((response) => {
+                        this.allUser = response.data;
+                        if (this.allUser.message) {
+                            this.showWarn = true;
+                            this.showpropt = this.allUser.message;
+                            return
+                        } else {
+                            this.$store.commit('byUserInfo1',this.userName);
+                            this.$router.push({path: '/profile', query: {name: this.$store.state.userInfo.username}});
+                            console.log(this.$store.state.userInfo.username);
+                        }
+                    });
                 }
             },
             warnclick(){
                 this.showWarn=false
             }
         },
-       mounted(){
+        created(){
             Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((response)=>{
                 this.allCade=response.data.code;
             });
-       },
+        },
         components:{
             zhead
         }
@@ -197,7 +202,7 @@
         font-size:0.6rem;
     }
     .cade_des p:nth-child(1){
-        color: #666;;
+        color: #666;
     }
     .cade_des p:nth-child(2){
         color: #3b95e9;
@@ -210,7 +215,7 @@
         font-size: 0.6rem;
     }
     .login_btn{
-        width: 17.55rem;
+        width: 14.85rem;
         height: 2.25rem;
         background: #4cd964;
         color: white;
@@ -222,7 +227,7 @@
     }
     .login_forget{
         text-align: right;
-        font-size: 0.8rem;
+        font-size: 0.6rem;
         margin-right: 0.75rem;
         margin-top: 0.5rem;
     }
@@ -241,9 +246,10 @@
         height: 9.2rem;
         background:#4cd964 ;
         position: absolute;
-        left:2rem;
-        top: 9.8rem;
+        left: 1rem;
+        top: 9rem;
         border-radius: 0.25rem;
+        animation: tipMove .4s;
 
     }
     .warn_top{
@@ -262,5 +268,11 @@
         text-align: center;
         color: white;
         line-height: 2rem;
+    }
+    @keyframes tipMove{
+        0%   { transform: scale(1) }
+        35%  { transform: scale(.8) }
+        70%  { transform: scale(1.1) }
+        100% { transform: scale(1) }
     }
 </style>
