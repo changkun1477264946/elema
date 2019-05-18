@@ -1,5 +1,8 @@
 <template>
     <div class="city_title">
+        <transition name="fade">
+            <loading v-if="isLoading"></loading>
+        </transition>
         <zhead>
             <div slot="logo" class="logo">ele.me</div>
             <div slot="login" class="login" v-if="!userInfoLogin" @click="goProfile">登录 | 注册</div>
@@ -45,6 +48,7 @@
         components: {Zhead},
         data(){
             return {
+                isLoading: true,
                 allCity:{},
                 newAllCity:{},
                 hotCity:{},
@@ -63,6 +67,7 @@
                     const k = newkey[i];
                     this.newAllCity[k] = this.allCity[k]
                 }
+                this.isLoading = false
                 console.log(this.newAllCity);
                 return this.newAllCity;
             },
@@ -84,6 +89,7 @@
             Vue.axios.get('https://elm.cangdu.org/v1/cities?type=hot').then((res)=>{
                 // console.log(res.data);
                 this.hotCity=res.data;
+                this.isLoading = false
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });
@@ -98,6 +104,7 @@
                     this.$store.commit('changeCityInfo',res.data);
                     this.cityInfor = res.data;
                     this.$router.push({path:"/goChooseCityPage"})
+                    this.isLoading = false
                 }).catch((error)=>{
                     console.log('请求错误:1' ,error);
                 });

@@ -170,6 +170,7 @@
             infor2(){
                 Vue.axios.get('https://elm.cangdu.org/v2/signout').then((response)=>{
                     this.$store.commit('clearUserInfo');
+                    this.$store.commit('byUserInfo1','登录/注册');
                     this.allUser=response.data;
                     console.log(this.allUser);
                 });
