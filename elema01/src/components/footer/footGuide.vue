@@ -13,8 +13,8 @@
                 <Icon type="md-copy" size="25"  :color="$router.currentRoute.path === '/orderList'? '#2598e8':'black'"/>
                 <p>订单</p>
             </router-link>
-            <router-link :to="{path:'/login'}" @click="changebgc(4)">
-                <Icon type="ios-contact" size="25" :color="$router.currentRoute.path === '/login' ? '#2598e8':'black'"/>
+            <router-link :to="{path:'/profile'}" @click="changebgc(4)">
+                <Icon type="ios-contact" size="25" :color="$router.currentRoute.path === '/profile' ? '#2598e8':'black'"/>
                 <p>我的</p>
             </router-link>
         </div>
