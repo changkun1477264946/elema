@@ -69,6 +69,13 @@ const store = new Vuex.Store({
             }
             return num;
         },
+        // ball:(state)=>{
+        //     let num=0;
+        //     for(let i in state.cartList) {
+        //         num += state.cartList[i].count;
+        //     }
+        //     return num;
+        // },
     },
     mutations: {
         removeProduct(state,obj){

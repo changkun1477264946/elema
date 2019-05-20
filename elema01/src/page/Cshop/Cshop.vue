@@ -23,7 +23,7 @@
                             <span class="s1">¥{{food.specfoods[0].price}}</span>
                             <span class="s2">起</span>&nbsp;&nbsp;
                         </div>
-                        <RbuttonA :foodT="food" :shop="$parent.datas"></RbuttonA>
+                        <RbuttonA :foodT="food" :shop="$parent.datas" :ball="ballGoCart11"></RbuttonA>
                     </Col >
                 </div>
             </div>
@@ -45,10 +45,10 @@
                 </ul>
             </div>
         </div>
-
         <div>
             <shopping-cart></shopping-cart>
         </div>
+
     </div>
 </template>
 
@@ -74,6 +74,7 @@
         },
         mounted(){
             Vue.axios.get('https://elm.cangdu.org/shopping/v2/menu?restaurant_id='+this.$parent.$route.query.id).then((res)=>{
+                // console.log(res.data)
                 this.datas=res.data;
                 console.log(res.data,1111);
                 this.isLoading = false
@@ -102,6 +103,27 @@
 </script>
 
 <style scoped>
+  /*  .ball1{
+        display: inline-block;
+    }
+    .ball1 button{
+        opacity: 0.7;
+        border-radius: 50%;
+        width: .8rem;
+        height: .8rem;
+        color: white;
+        background: #3190e8;
+        font-size: 0.7rem;
+        outline: none;
+        text-align: center;
+        line-height: 0.6rem;
+        border: 1px solid #3190e8;
+        position: fixed;
+        !*bottom: 0;*!
+        !*left: 0;*!
+        !*transform: translateZ(1555px);*!
+        z-index: 1121;
+    }*/
     .goodsss{
         padding-bottom: 2.5rem;
     }
@@ -161,7 +183,9 @@
         vertical-align: middle;
         /*line-height: 2rem;*/
         width: 40%;
+
         overflow: hidden;
+
         text-overflow: ellipsis;
         white-space: nowrap;
         font-size: .8rem;
@@ -232,7 +256,8 @@
         padding: .6rem .4rem;
         border-bottom: 1px solid #f8f8f8;
         position: relative;
-        overflow: hidden;
+        overflow: scroll;
+        /*asdsadasdsadasdasdsadsadsadasdsadsadasawdad*/
     }
     .cleft img{
         width: 100%;
