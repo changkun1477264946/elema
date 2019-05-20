@@ -30,24 +30,7 @@
                     {{datas2}} ( APP专享 )
                     <span class="pull-right fss">一个活动 ></span>
                 </div>
-                <transition name="ck">
-                    <div class="mengban" v-if="mengChang">
-                        <h3 class="mh3">{{datas.name}}</h3>
-                        <div class="youhui">
-                            <div class="div11">
-                                <div class="div11_top">优惠信息</div>
-                                <div class="div11_down"><span class="mine_del">减</span> &nbsp;{{datas2}} ( APP专享 )</div>
-                            </div>
-                        </div>
-                        <div class="youhui">
-                            <div class="div11">
-                                <div class="div11_top">商家公告</div>
-                                <div class="div11_down">{{datas.description}}</div>
-                            </div>
-                        </div>
-                        <span @click="changeMeng1"><Icon type="ios-close-circle-outline" class="tubiao"  /></span>
-                    </div>
-                </transition>
+
             </div>
             <div class="head" ref="ele">
                 <Row>
@@ -65,6 +48,24 @@
             </div>
             <router-view></router-view>
         </div>
+        <transition name="ck">
+            <div class="mengban" v-if="mengChang">
+                <h3 class="mh3">{{datas.name}}</h3>
+                <div class="youhui">
+                    <div class="div11">
+                        <div class="div11_top">优惠信息</div>
+                        <div class="div11_down"><span class="mine_del">减</span> &nbsp;{{datas2}} ( APP专享 )</div>
+                    </div>
+                </div>
+                <div class="youhui">
+                    <div class="div11">
+                        <div class="div11_top">商家公告</div>
+                        <div class="div11_down">{{datas.description}}</div>
+                    </div>
+                </div>
+                <span @click="changeMeng1"><Icon type="ios-close-circle-outline" class="tubiao"  /></span>
+            </div>
+        </transition>
         <transition name="cmp"  mode="out-in">
             <food-detection v-if="aaa1"></food-detection>
         </transition>
@@ -139,9 +140,8 @@
         bottom: 0;
         left: 0;
         background-color: #262626;
-        z-index: 200;
+        z-index: 500;
         padding: 1.25rem;
-
     }
     .mh3{
         text-align: center;

@@ -10,8 +10,8 @@
                 <Icon type="ios-person-outline" />
             </div>
         </zhead>
-        <div >
-            <div class="">
+        <div class="cityGuess0">
+            <div class="cityGuess1">
                 <span class="pull-left">当前定位城市</span>
                 <span class="pull-right">{{guessCityChange}}</span>
                 <span class="clearfix"></span>
@@ -135,6 +135,14 @@
         border-top: 2px solid #e4e4e4;
         border-bottom: 1px solid #e4e4e4;
         font: .55rem/1.45rem Helvetica Neue;
+        padding-top: 2.4rem;
+    }
+    .cityGuess0{
+        padding: 0.2rem 0;
+        /*border-bottom: 1px solid #eee;*/
+    }
+    .cityGuess1{
+        border-bottom: 1px solid #eee;
     }
     .pull-right{
         padding-right: .45rem;

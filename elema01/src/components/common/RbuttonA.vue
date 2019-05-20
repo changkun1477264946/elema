@@ -12,7 +12,7 @@
                 <div class="div2">
                     <p class="p1">规格</p>
                     <div class="div21">
-                        <span class="sp1" :class="{ssp:v===i}" @click="v = i" v-for="(data,i) in foodT.specfoods" :key="i">{{data.specs_name}}</span>
+                        <span class="sp1" :class="{ssp:v===i}" @click="v = i" v-for="(data,i) in foodT.specfoods" :key="i">{{data.specs_name}}{{i}}</span>
                     </div>
                 </div>
                 <div class="div3">
@@ -89,9 +89,10 @@
             addShoppingCart1(e){
                 this.value++;
                 let foodT1 = Object.assign({}, this.foodT);
-                let sp1 = foodT1.specfoods.slice(this.v,1);
+                let sp1 = foodT1.specfoods.slice(this.v,this.v+1);
                 foodT1.specfoods = sp1;
-                this.$store.commit('mainAddShoppingCart',foodT1.specfoods.price);
+                console.log(foodT1.specfoods[0]);
+                this.$store.commit('mainAddShoppingCart',foodT1.specfoods[0].price);
                 let obj = {f:foodT1, count:this.value,shop:this.shop};
                 this.$store.commit('addProduct',obj);
                 this.type1=false;

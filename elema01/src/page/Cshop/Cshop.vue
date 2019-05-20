@@ -23,7 +23,7 @@
                             <span class="s1">¥{{food.specfoods[0].price}}</span>
                             <span class="s2">起</span>&nbsp;&nbsp;
                         </div>
-                        <RbuttonA :foodT="food" :shop="$parent.datas" :ball="ballGoCart11"></RbuttonA>
+                        <RbuttonA :foodT="food" :shop="$parent.datas"></RbuttonA>
                     </Col >
                 </div>
             </div>

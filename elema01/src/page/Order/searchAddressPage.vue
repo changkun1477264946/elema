@@ -6,7 +6,7 @@
             </div>
             <div slot="title" class="title">选择收货地址</div>
         </zhead>
-        <div class="AddressInfo" v-for="(datas,i) in getaddressDatas" :key="i" @click="chooseAddree(i)">
+        <div class="AddressInfo" v-if="$store.state.userInfo>5" v-for="(datas,i) in getaddressDatas" :key="i" @click="chooseAddree(i)">
             <Icon type="md-checkmark-circle" class="DDicon" :color="changeIcon===i ? '#4cd964':'transparent'"/>
             <div class="dd">
                 <div class="div1">

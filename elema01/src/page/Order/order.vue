@@ -6,9 +6,12 @@
                 <Icon type="ios-arrow-back" />
             </div>
             <div slot="title" class="title">确认订单</div>
-            <div slot="login"  class="login"><router-link :to="{path:'/login'}">
-                <Icon type="ios-person-outline" />
-            </router-link></div>
+            <div slot="login"  class="login1" v-if="Object.keys($store.state.userInfo).length<=3">
+                <router-link :to="{path:'/login'}">登录 | 注册</router-link>
+            </div>
+            <div slot="login"  class="login" v-if="Object.keys($store.state.userInfo).length>3">
+                <router-link :to="{path:'/profile'}"><Icon type="ios-person-outline" /></router-link>
+            </div>
         </zhead>
         <!--增加和选择地址-->
         <div @click="goAddAddress">
