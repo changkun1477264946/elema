@@ -185,6 +185,7 @@
     .qq{
         width: 100%;
         padding-top: 2.3rem;
+        padding-bottom: 2.5rem;
     }
     .bird{
         margin-left: 1.6rem;

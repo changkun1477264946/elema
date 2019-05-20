@@ -126,6 +126,7 @@
 <style scoped>
     .cc{
         padding-top: 2.4rem;
+        padding-bottom: 2.5rem;
         width: 100%;
     }
     .logo{
