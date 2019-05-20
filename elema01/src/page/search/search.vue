@@ -41,11 +41,11 @@
             </li>
         </ul>
         <ul v-show="show1 === false">
-            <li v-for="(data,i) in $store.state.hostoryInfor" :key="i">
+            <li v-for="(data,i) in $store.state.hostoryInfor" :key="i" @click="subData1(data)">
                 <p class="pp1">
                     {{data}}
                 </p>
-                <p class="pp2"><Icon type="md-close"  @click="clearInfor(i)" /></p>
+                <p class="pp2"><Icon type="md-close"  @click.stop="clearInfor(i)" /></p>
             </li>
             <li class="footer11" @click="clearAllInfor" v-if="footerIf">
                 清空搜索历史
@@ -82,6 +82,10 @@
             },
         },
         methods:{
+            subData1(data){
+                this.value1 = data;
+                this.submitData();
+            },
             goCtype(a){
                this.$router.push({path:'/ctype',query:{id:a}})
             },
