@@ -84,14 +84,12 @@
             // },
             getAddress(){
                 Vue.axios.get('https://elm.cangdu.org/v1/users/'+this.$store.state.userInfo.user_id+'/addresses').then((response)=>{
-
                     this.alladdress=response.data.reverse();
-                    console.log(response.data);
                 });
 
             },
             editclick(){
-                if(this.edit=='编辑'){
+                if(this.edit==='编辑'){
                     this.edit='完成';
                     this.icon=true
                 }else{
@@ -105,11 +103,8 @@
                 console.log(data.id);
                 Vue.axios.delete('https://elm.cangdu.org/v1/users/'+this.$store.state.userInfo.user_id+'/addresses/'+data.id).then((response)=>{
                     this.removeaddress=response.data;
-                    console.log( this.removeaddress);
-
                 });
                 this.alladdress.splice(index,1);
-
             }
         },
         mounted(){

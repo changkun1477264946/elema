@@ -172,7 +172,6 @@
                     this.$store.commit('clearUserInfo');
                     this.$store.commit('byUserInfo1','登录/注册');
                     this.allUser=response.data;
-                    console.log(this.allUser);
                 });
                 // this.name='登录/注册'
                 this.$store.commit('byUserInfo1','登录/注册');

@@ -52,10 +52,7 @@
 
             },
             update(){
-                // console.log(this.inputname);
                 this.$store.commit('byUserInfo1',this.inputname);
-                // this.$store.state.userInfo.username=this.inputname
-                console.log(this.$store.state.userInfo.username);
                 this.$router.push({path:"/profile/infor"});
             }
 

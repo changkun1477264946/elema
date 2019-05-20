@@ -43,8 +43,6 @@
         mounted(){
             Vue.axios.get('https://elm.cangdu.org/v3/profile/explain').then((res)=>{
                 this.allDetail=res.data;
-                console.log(this.allDetail);
-                console.log(this.allDetail.balanceContent)
             }).catch((error)=>{
                 console.log(error,'请求错误')
             })

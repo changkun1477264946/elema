@@ -58,7 +58,6 @@
             if(this.$store.state.userInfo){
                 Vue.axios.post(' https://elm.cangdu.org/v1/users/:user_id/hongbao/exchange').then((response)=>{
                     this.allexchange=response.data;
-                    console.log(this.allexchange.message)
                 });
             }
 

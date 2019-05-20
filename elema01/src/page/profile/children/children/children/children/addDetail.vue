@@ -64,13 +64,11 @@
                     this.addshow1=true;
                     Vue.axios.get('https://elm.cangdu.org/v1/pois?city_id='+this.$store.state.guessCity.id+'&keyword='+this.inputvalue+'&type=search').then((response)=>{
                         this.allAdd=response.data;
-                        console.log(this.allAdd);
                     })
                 }
             },
             addressclick(data){
 
-                console.log(data);
                 localStorage.setItem('data', JSON.stringify(data));
                 // console.log(JSON.parse(localStorage.getItem("data")))
 

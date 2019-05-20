@@ -103,7 +103,6 @@
                 if(this.value1 === ''){
                     return;
                 }
-                this.show1 =true;
                 if(this.value1.length>0){
                     if( this.hostoryInfor.length===0){
                         this.hostoryInfor.push(this.value1);

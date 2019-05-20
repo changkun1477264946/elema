@@ -35,7 +35,6 @@
                     </Col>
                 </Row>
             </div>
-
         </div>
     </div>
 
@@ -43,9 +42,10 @@
 <script>
     import Vue from 'vue';
     import Zhead from "../../components/header/head";
+    import Loading from "../../components/common/loading";
     export default {
         name: "home",
-        components: {Zhead},
+        components: {Loading, Zhead},
         data(){
             return {
                 isLoading: true,
@@ -62,13 +62,11 @@
             },
             sortByKey() {
                 const newkey = Object.keys(this.allCity).sort();
-                console.log(newkey,'11');
                 for (var i = 0; i < newkey.length; i++) {
                     const k = newkey[i];
                     this.newAllCity[k] = this.allCity[k]
                 }
                 this.isLoading = false
-                console.log(this.newAllCity);
                 return this.newAllCity;
             },
             guessCityChange(){
@@ -100,7 +98,6 @@
             },
             changeCity(id){
                 Vue.axios.get('https://elm.cangdu.org/v1/cities/'+id).then((res)=>{
-                    console.log(res.data,'1589');
                     this.$store.commit('changeCityInfo',res.data);
                     this.cityInfor = res.data;
                     this.$router.push({path:"/goChooseCityPage"})

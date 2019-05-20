@@ -61,7 +61,6 @@
         mounted(){
             Vue.axios.post('https://elm.cangdu.org/v1/captchas').then((response)=>{
                 this.allCade=response.data.code;
-                console.log(this.allCade);
             });
         },
         methods:{

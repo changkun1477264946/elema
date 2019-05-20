@@ -77,7 +77,6 @@
                 // 搜索地址
                 Vue.axios.get('https://elm.cangdu.org/v1/pois?city_id='+this.$store.state.guessCity.id+'&keyword='+this.vul+'&type=search').then((res)=>{
                     this.datas = res.data;
-                    console.log(res.data,111)
                 }).catch((error)=>{
                     console.log('请求错误:' ,error);
                 });

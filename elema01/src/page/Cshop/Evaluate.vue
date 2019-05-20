@@ -56,13 +56,11 @@
         mounted(){
             Vue.axios.get('https://elm.cangdu.org/ugc/v2/restaurants/'+this.$route.query.id+'/ratings/tags').then((res)=>{
                 this.datas1=res.data;
-                // console.log(res.data,111)
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });
             Vue.axios.get('https://elm.cangdu.org/ugc/v2/restaurants/'+this.$route.query.id+'/ratings?offset=0&limit=10').then((res)=>{
                 this.datas2=res.data;
-                // console.log(res.data,222)
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });

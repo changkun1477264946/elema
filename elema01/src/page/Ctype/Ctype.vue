@@ -97,11 +97,9 @@
             let a = Math.floor(Math.random()*255);
             let b = Math.floor(Math.random()*255);
             let c = Math.floor(Math.random()*255);
-            // e.target.style.backgroundColor= "rgb("+a+","+b+","+c+")";
             this.bgc={background:"rgba("+a+","+b+","+c+','+0.5+")"};
 
             Vue.axios.get('https://elm.cangdu.org/shopping/restaurant/'+this.$route.query.id).then((res)=>{
-                console.log(res.data,'aaa3284');
                 this.datas=res.data;
                 this.datas1=this.datas.piecewise_agent_fee.tips;
                 this.datas2=this.datas.activities[0].description;

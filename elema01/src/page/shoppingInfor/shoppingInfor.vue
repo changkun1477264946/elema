@@ -40,7 +40,6 @@
         },
         mounted(){
             this.data = this.$route.query.data;
-            console.log(this.data,'12315646');
         }
     }
 </script>

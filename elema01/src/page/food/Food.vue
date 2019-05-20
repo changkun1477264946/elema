@@ -125,7 +125,6 @@
         },
         mounted(){
             Vue.axios.get('https://elm.cangdu.org/v2/index_entry').then((res)=>{
-                 console.log(res.data,"ffffffff");
                 this.foods=res.data;
                 this.foods1=res.data.slice(0, this.foods.length/2);
                 this.foods2=res.data.slice(this.foods.length/2);

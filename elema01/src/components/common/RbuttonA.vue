@@ -83,7 +83,6 @@
                 this.$store.commit('mainAddShoppingCart',this.foodT.specfoods[0].price);
                 let obj = {f:this.foodT, count:this.value,shop:this.shop};
                 this.$store.commit('addProduct',obj);
-
                 // this.ball(e.clientX-e.offsetX,e.clientY-e.offsetY);
             },
             addShoppingCart1(e){
@@ -91,7 +90,6 @@
                 let foodT1 = Object.assign({}, this.foodT);
                 let sp1 = foodT1.specfoods.slice(this.v,this.v+1);
                 foodT1.specfoods = sp1;
-                console.log(foodT1.specfoods[0]);
                 this.$store.commit('mainAddShoppingCart',foodT1.specfoods[0].price);
                 let obj = {f:foodT1, count:this.value,shop:this.shop};
                 this.$store.commit('addProduct',obj);

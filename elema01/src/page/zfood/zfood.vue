@@ -176,7 +176,6 @@
             this.title= this.$route.query.title;
             this.foodtitle=this.title;
             this.foodid=this.$route.query.restaurant_category_id;
-            console.log(this.foodid+'aaa');
             //发起网络请求 获取数据
             Vue.axios.get('https://elm.cangdu.org/shopping/v1/restaurants/delivery_modes').then((response)=>{
                 this.allPsWay=response.data;
@@ -192,9 +191,7 @@
             });
 
             Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude='+this.$store.state.latitude+'&longitude='+this.$store.state.longitude+'&restaurant_category_id='+this.foodid).then((response)=>{
-
                 this.goodsList = response.data
-
             }).catch((error)=>{
                 console.log('请求错误' ,error);
             });
@@ -209,19 +206,18 @@
                 console.log(this.title);
                 if (this.itemtype !== type) {
                     this.itemtype= type;
-                    if (type == "food") {
+                    if (type === "food") {
                         this.foodtitle = "分类";
                     }
                 } else {
                     this.itemtype = "";
-                    if (type == "food") {
+                    if (type === "food") {
                         this.foodtitle = this.title;
                     }
                 }
                 //发起网络请求 获取数据
                 Vue.axios.get('https://elm.cangdu.org/shopping/v2/restaurant/category').then((response)=>{
                     this.allSort=response.data;
-                    // console.log(this.allSort)
                 }).catch((error)=>{
                     console.log('请求错误',error)
                 })
@@ -230,7 +226,7 @@
             itemclick(id,index){
                 this.listbgc=id;
                 this.allSort.forEach(item => {
-                    if (this.listbgc == item.id) {
+                    if (this.listbgc === item.id) {
                         this.allSortdes = item.sub_categories;
                     }
                 });
@@ -241,7 +237,7 @@
                 if(!path){
                     return "https://elm.cangdu.org/img/default.jpg"
                 }
-                let lx=path.slice(path.length-3)== 'png' ? 'png':(path.slice(path.length-3) == 'jpg' ? 'jpg' : 'jpeg');
+                let lx=path.slice(path.length-3)=== 'png' ? 'png':(path.slice(path.length-3) === 'jpg' ? 'jpg' : 'jpeg');
                 let url = '/' + path.substr(0, 1) + '/' + path.substr(1, 2) + '/' + path.slice(3) +'.'+lx;
                 return 'https://fuss10.elemecdn.com' + url;
             },
@@ -251,7 +247,6 @@
                 Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude='+this.$store.state.latitude+'&longitude='+this.$store.state.longitude+'&restaurant_category_id='+i).then((response)=>{
 
                     this.goodsList = response.data
-                    console.log(this.goodsList);
                 }).catch((error)=>{
                     console.log('请求错误' ,error);
                 });

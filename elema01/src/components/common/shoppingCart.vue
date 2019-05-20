@@ -34,7 +34,6 @@
         methods:{
             goOrder(){
                 this.$router.push({path:'/order'});
-
             }
         },
     }

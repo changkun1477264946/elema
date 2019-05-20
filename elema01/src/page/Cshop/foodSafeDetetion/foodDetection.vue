@@ -76,8 +76,6 @@
                 this.datas=res.data;
                 this.datas1=res.data.supports;
                 this.datas2=res.data.activities[0].description;
-                console.log(this.datas1,'41544156456456')
-                console.log(this.datas2,'41544156456456')
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });

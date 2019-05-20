@@ -101,7 +101,6 @@
             if(this.$store.state.userInfo){
                 Vue.axios.get('https://elm.cangdu.org/promotion/v2/users/'+this.$store.state.userInfo.user_id+'/hongbaos?limit=20&offset=0').then((response)=>{
                     this.allInfor=response.data;
-                    console.log(this.allInfor);
                 }).catch((error)=>{
                     console.log(error,'请求错误')
                 })

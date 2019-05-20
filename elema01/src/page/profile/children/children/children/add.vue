@@ -121,7 +121,7 @@
                 this.btn();
             },
             keyaddress(){
-                if(this.inputaddress.length==0){
+                if(this.inputaddress.length===0){
                     this.showp2=true;
                     this.bk1=true;
                     this.showp2_2=false;
@@ -138,7 +138,7 @@
                 // console.log(this.inputaddress.length);
             },
             keytel(){
-                if(this.inputtel == '' || !this.inputtel){
+                if(this.inputtel === '' || !this.inputtel){
                     this.showp3=true;
                     this.showp3_3=false;
                     this.bk2=true;
@@ -154,7 +154,7 @@
                 this.btn();
             },
             keytelone(){
-                if(this.inputtelone==''){
+                if(this.inputtelone===''){
                     this.showp4=false
                 }else if(!(/^1[34578]\d{9}$/.test(this.inputtelone))){
                     this.showp4=true;

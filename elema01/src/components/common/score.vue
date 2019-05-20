@@ -41,7 +41,6 @@
                 this.value= Math.round(res.data.overall_score*10)/10;
                 this.value1= Math.round(res.data.service_score*10)/10;
                 this.value2= Math.round(res.data.food_score*10)/10;
-                console.log(res.data,111)
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
             });

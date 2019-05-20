@@ -49,17 +49,9 @@
     import zhead from "../../components/header/head"
     export default {
         name: "balance",
-        data(){
-            return{
-
-
-            }
-        },
         components:{
             zhead
         },
-        methods:{
-        }
     }
 </script>
 

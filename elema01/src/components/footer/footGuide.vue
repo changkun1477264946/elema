@@ -43,7 +43,7 @@
         position: fixed;
         bottom: 0;
         left:0;
-        z-line:100;
+        z-index:100;
     }
     .footer-icon{
         display: flex;

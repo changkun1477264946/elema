@@ -136,10 +136,6 @@
                 goodPrice:[],
             }
         },
-        mounted(){
-            console.log(this.$store.state.cartList);
-            console.log(this.$store.state.searchAddress,125);
-        },
         computed:{
             // 得到当前地址信息
             getAddressData(){
@@ -195,7 +191,6 @@
                     });
                     this.goodsNum.push(p1);
                     this.goodPrice.push(p);
-                    console.log(this.goodPrice,'123141')
                 });
                 return this.goods;
             },

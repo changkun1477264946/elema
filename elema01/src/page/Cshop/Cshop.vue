@@ -76,7 +76,6 @@
             Vue.axios.get('https://elm.cangdu.org/shopping/v2/menu?restaurant_id='+this.$parent.$route.query.id).then((res)=>{
                 // console.log(res.data)
                 this.datas=res.data;
-                console.log(res.data,1111);
                 this.isLoading = false
             }).catch((error)=>{
                 console.log('请求错误:' ,error);
