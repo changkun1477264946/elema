@@ -22,7 +22,7 @@
                 <swiper-slide>
                     <Row class="text-center">
                         <Col span="6"  v-for="(food,i) in foods1" :key="i" class="food" >
-                            <div @click="zfoodclick(food.title)">
+                            <div @click="zfoodclick(food.title,food.id)">
                                 <div><img v-bind:src="'//fuss10.elemecdn.com/'+food.image_url"></div>
                                 <div class="title">{{food.title}}</div>
                             </div>
@@ -33,7 +33,7 @@
                 <swiper-slide>
                     <Row class="text-center">
                         <Col span="6"  v-for="(food,i) in foods2" :key="i" class="food" >
-                            <div @click="zfoodclick(food.title)">
+                            <div @click="zfoodclick(food.title,food.id)">
                                 <div><img v-bind:src="'//fuss10.elemecdn.com/'+food.image_url"></div>
                                 <div class="title">{{food.title}}</div>
                             </div>
@@ -125,7 +125,7 @@
         },
         mounted(){
             Vue.axios.get('https://elm.cangdu.org/v2/index_entry').then((res)=>{
-                // console.log(res.data);
+                 console.log(res.data,"ffffffff");
                 this.foods=res.data;
                 this.foods1=res.data.slice(0, this.foods.length/2);
                 this.foods2=res.data.slice(this.foods.length/2);
@@ -138,8 +138,8 @@
             goCtype(i){
                 this.$router.push({path:'/ctype',query:{id:i}})
             },
-            zfoodclick(a){
-                this.$router.push({path:'/zfood',query:{title:a}})
+            zfoodclick(a,b){
+                this.$router.push({path:'/zfood',query:{title:a,restaurant_category_id:b}});
             }
         },
         computed:{
