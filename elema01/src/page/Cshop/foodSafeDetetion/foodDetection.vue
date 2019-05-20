@@ -73,6 +73,7 @@
         created(){
             //+this.$route.query.id
             Vue.axios.get('https://elm.cangdu.org/shopping/restaurant/3301').then((res)=>{
+                // console.log(res.data.activities[0][],152);
                 this.datas=res.data;
                 this.datas1=res.data.supports;
                 this.datas2=res.data.activities[0].description;
