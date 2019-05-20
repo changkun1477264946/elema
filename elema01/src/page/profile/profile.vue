@@ -13,7 +13,7 @@
             <div class="profile_infor"  >
                 <router-link :to="{path:(allUser.username?'/profile/infor':'login')}">
                     <div class="profile_img">
-                        <img  :src="'//elm.cangdu.org/img/'+imageurl" alt="" class="img">
+                        <img  :src="'//elm.cangdu.org/img/'+imageurl" alt="" class="img" v-if="show">
                         <img src="../../images/qq.png" alt="" class="img1" v-if="showimg">
                     </div>
                     <div class="profile_details ">
@@ -123,8 +123,9 @@
                 point:0,
                 allUser:{},
                 imageurl:'',
-                show:true,
-                showimg:false,
+                show:false,
+                showimg:true,
+
             }
         },
         mounted(){
@@ -135,6 +136,8 @@
                 if(Object.keys(response.data).length>5) {
                     this.allUser = response.data
                     console.log(response.data.username);
+                    this.show=true;
+                    this.showimg=false;
                     this.imageurl = this.allUser.avatar
                     // this.name = this.allUser.username;
                     this.tel = this.allUser.mobile || '暂无绑定手机号'
@@ -146,6 +149,7 @@
                     this.$store.commit('byUserInfo1','登录/注册');
                     this.tel='暂无手机号';
                     this.showimg=true;
+                    this.show=false;
                 }
             });
 
@@ -175,7 +179,9 @@
                 });
                 // this.name='登录/注册'
                 this.$store.commit('byUserInfo1','登录/注册');
-                this.show = true;
+                // this.show = true;
+                this.showimg=true;
+                this.show=false;
                 this.$router.push({path:"/profile"});
                 // window.localStorage.removeItem(this.allUser.username)
             },
@@ -236,7 +242,7 @@
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
-        margin-top: -1.25rem;
+        /*margin-top: -1.25rem;*/
     }
     .profile_details{
         float: left;
