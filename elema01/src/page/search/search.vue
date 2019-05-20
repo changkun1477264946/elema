@@ -26,7 +26,7 @@
         </div>
         <div class="searchHostory">搜索历史</div>
         <ul v-if="show1">
-            <li v-if="datasName" v-for="(data,i) in datasName" :key="i" class="searchshop">
+            <li v-if="datasName" v-for="(data,i) in datasName" :key="i" class="searchshop" @click="goCtype(data.id)">
                 <Col span="4">
                     <img :src="'https://elm.cangdu.org/img/'+data.image_path" alt="">
                 </Col>
@@ -36,12 +36,12 @@
                     <p class="spp1">{{data.float_minimum_order_amount}}元起送 &nbsp; / &nbsp; 距离{{data.distance}}</p>
                 </Col>
             </li>
-            <li v-if="datasName.length==0">
+            <li v-if="datasName.length===0">
                 很抱歉 ! &nbsp; 无搜素结果
             </li>
         </ul>
-        <ul v-show="show1 == false">
-            <li v-for="(data,i) in hostoryInfor" :key="i">
+        <ul v-show="show1 === false">
+            <li v-for="(data,i) in $store.state.hostoryInfor" :key="i">
                 <p class="pp1">
                     {{data}}
                 </p>
@@ -65,7 +65,7 @@
         data(){
             return {
                 value1:'',
-                hostoryInfor:[],
+                // hostoryInfor:[],
                 getDatas:[],
                 datasName:[],
                 show1:false,
@@ -78,10 +78,13 @@
                 }).catch((error)=>{
                     console.log('请求错误:1' ,error);
                 });
-                return this.hostoryInfor.length > 0;
+                return this.$store.state.hostoryInfor.length > 0;
             },
         },
         methods:{
+            goCtype(a){
+               this.$router.push({path:'/ctype',query:{id:a}})
+            },
             aaa(){
                 if(this.value1===''){
                     this.datasName=[]
@@ -94,11 +97,11 @@
                 this.show1 =true;
                 this.datasName=[];
                 if(this.value1.length>0){
-                    if( this.hostoryInfor.length===0){
-                        this.hostoryInfor.push(this.value1);
+                    if( this.$store.state.hostoryInfor.length===0){
+                        this.$store.commit('addHostoryInfor',this.value1);
                     }else{
-                        if(!this.hostoryInfor.some((item)=>{return item === this.value1;})){
-                            this.hostoryInfor.push(this.value1);
+                        if(!this.$store.state.hostoryInfor.some((item)=>{return item === this.value1;})){
+                            this.$store.commit('addHostoryInfor',this.value1);
                         }
                     }
                 }
@@ -114,10 +117,10 @@
                 this.value1='';
             },
             clearInfor(i){
-                this.hostoryInfor.splice(i,1)
+                this.$store.commit('clearHostoryInfor',i);
             },
             clearAllInfor(){
-                this.hostoryInfor=[]
+                this.$store.commit('clearAllHostoryInfor');
             }
         }
     }

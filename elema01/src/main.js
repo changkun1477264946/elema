@@ -43,7 +43,7 @@ const store = new Vuex.Store({
         cartLBSY:'',  // 购物车的纵坐标
 
         iconColor:1,
-
+        hostoryInfor:[],  // search搜索历史记录
         addressIndex: null,//选择地址的索引值
         needValidation: null,//确认订单时是否需要验证
         cartId: null, //购物车id
@@ -173,7 +173,16 @@ const store = new Vuex.Store({
         },
         clearUserInfo(state){
             state.userInfo={};
-        }
+        },
+        addHostoryInfor(state,data){
+            state.hostoryInfor.push(data)
+        },
+        clearHostoryInfor(state,i){
+            state.hostoryInfor.splice(i,1)
+        },
+        clearAllHostoryInfor(state){
+            state.hostoryInfor=[];
+        },
 
     },
 });
