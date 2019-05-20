@@ -198,7 +198,12 @@
         methods:{
             // 去选择地址页面
             goAddAddress(){
-                this.$router.push({path:'/order/searchAddressPage'})
+                if(Object.keys(this.$store.state.userInfo).length>5){
+                    this.$router.push({path:'/order/searchAddressPage'})
+                }else {
+                    this.$router.push({path:'/login'})
+                }
+
             },
             // 显示选择支付方式模块
             appearMadeM(){
