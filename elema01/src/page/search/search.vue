@@ -8,7 +8,6 @@
             <!--<div slot="login">登录 | 注册</div>-->
         </zhead>
         <div class="cbody">
-            <form action="">
                 <Row>
                     <Col span="19">
                         <label>
@@ -22,7 +21,6 @@
                         <button class="cbtn" @click="submitData">提交</button>
                     </Col>
                 </Row>
-            </form>
         </div>
         <div class="searchHostory">搜索历史</div>
         <ul v-if="show1">
@@ -47,7 +45,7 @@
                 </p>
                 <p class="pp2"><Icon type="md-close"  @click.stop="clearInfor(i)" /></p>
             </li>
-            <li class="footer11" @click="clearAllInfor" v-if="footerIf">
+            <li class="footer11" @click="clearAllInfor" v-if="$store.state.hostoryInfor.length > 0">
                 清空搜索历史
             </li>
         </ul>
@@ -70,6 +68,13 @@
                 datasName:[],
                 show1:false,
             }
+        },
+        mounted(){
+            Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude='+this.$store.state.latitude+'&longitude='+this.$store.state.longitude+'&limit=500').then((res)=>{
+                this.getDatas = res.data;
+            }).catch((error)=>{
+                console.log('请求错误:1' ,error);
+            });
         },
         computed:{
             footerIf(){
