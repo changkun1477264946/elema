@@ -165,9 +165,6 @@
             },
             // 预计送达时间
             getTime(){
-                // let year = new Date(timeStamp).getFullYear();
-                // let month =new Date(timeStamp).getMonth() + 1 < 10? "0" + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1;
-                // let date =new Date(timeStamp).getDate() < 10? "0" + new Date(timeStamp).getDate(): new Date(timeStamp).getDate();     year + "年" + month + "月" + date +"日"+" "+this.nowTime = hh+":"+mm ;
                 let hh =new Date(new Date()).getHours() < 10? "0" + new Date(new Date()).getHours(): new Date(new Date()).getHours();
                 let mm =new Date(new Date()).getMinutes() < 10? "0" + new Date(new Date()).getMinutes(): new Date(new Date()).getMinutes();
                 return hh+1+":"+mm;

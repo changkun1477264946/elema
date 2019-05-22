@@ -6,7 +6,7 @@
             </div>
             <div slot="title" class="title">选择收货地址</div>
         </zhead>
-        <div class="AddressInfo" v-if="Object.keys($store.state.userInfo).length>5" v-for="(datas,i) in getaddressDatas" :key="i" @click="chooseAddree(i)">
+        <div class="AddressInfo" v-if="Object.keys($store.state.userInfo).length>5"  v-for="(datas,i) in getaddressDatas" :key="i" @click="chooseAddree(i)">
             <Icon type="md-checkmark-circle" class="DDicon" :color="changeIcon===i ? '#4cd964':'transparent'"/>
             <div class="dd">
                 <div class="div1">
@@ -47,7 +47,7 @@
             getaddressDatas(){
                 Vue.axios.get('https://elm.cangdu.org/v1/users/'+this.$store.state.userInfo.id+'/addresses').then((res)=>{
                     this.$store.commit('byChoosedAddress',res.data);
-                    this.$store.commit('bySearchAddress',res.data[0]);
+                    // this.$store.commit('bySearchAddress',res.data[0]);
                 }).catch((error)=>{
                     console.log('请求错误:' ,error);
                 });
@@ -60,6 +60,7 @@
             chooseAddree(i){
                 this.changeIcon = i;
                 this.$store.commit('bySearchAddress',this.addressDatas[i]);
+                console.log(this.addressDatas[i],12587)
                 setTimeout(()=>{
                     this.$router.push({path:'/order'});
                 },200);
